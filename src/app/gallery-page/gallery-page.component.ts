@@ -10,9 +10,22 @@ declare var Swiper: any;
   styleUrls: ['./gallery-page.component.css']
 })
 export class GalleryPageComponent {
-  public floras: any[] = [];
-  public faunas: any[] = [];
-  public beritas: any[] = [];
+  public floraspartial: any[] = [];
+  public faunaspartial: any[] = [];
+  public beritaspartial: any[] = [];
+  public loading: boolean = true;
+
+  showFunFact = false;
+  currentFunFact = '';
+  private funFactInterval: any;
+
+  funFacts: string[] = [
+    'Mangrove forests act as natural coastal defenses, reducing erosion and storm damage.',
+    'Mangroves store up to four times more carbon than other tropical forests!',
+    'More than 70 species of mangroves exist around the world.',
+    'Mangrove roots provide shelter and nursery grounds for many marine species.',
+    'Mangroves help filter pollutants and improve water quality in coastal zones.'
+  ];
 
   constructor(
     private flora: FloraService,
@@ -23,15 +36,17 @@ export class GalleryPageComponent {
 
   ngOnInit(): void {
     this.ngZone.runOutsideAngular(() => {
-      this.getAllFlora();
-      this.getAllFauna();
-      this.getAllBerita();
+      this.getPartialFlora();
+      this.getPartialFauna();
+      this.getPartialBerita();
     });
+    this.startFunFactRotation();
   }
 
   ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(() => {
       // Initialize swiper1
+      this.loading = false;
       const swiper1 = new Swiper('.container1', {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -160,11 +175,11 @@ export class GalleryPageComponent {
     });
   }
 
-  getAllFlora() {
-    this.flora.getAllFlora().subscribe(
+  getPartialFlora() {
+    this.flora.getPartialFlora().subscribe(
       (floras: any[]) => {
         this.ngZone.run(() => {
-          this.floras = floras;
+          this.floraspartial = floras;
         });
       },
       error => {
@@ -173,24 +188,24 @@ export class GalleryPageComponent {
     );
   }
 
-  getAllFauna() {
-    this.fauna.getAllFauna().subscribe(
+  getPartialFauna() {
+    this.fauna.getPartialFauna().subscribe(
       (faunas: any[]) => {
         this.ngZone.run(() => {
-          this.faunas = faunas;
+          this.faunaspartial = faunas;
         });
       },
       error => {
         console.error('Error fetching Faunas:', error);
       }
     );
-  }
+  }  
 
-  getAllBerita() {
-    this.berita.getAllBerita().subscribe(
+  getPartialBerita() {
+    this.berita.getPartialBerita().subscribe(
       (beritas: any[]) => {
         this.ngZone.run(() => {
-          this.beritas = beritas;
+          this.beritaspartial = beritas;
         });
       },
       error => {
@@ -214,5 +229,27 @@ export class GalleryPageComponent {
   handleImageError(event: any, product: any) {
     console.error('Image loading error for product:', product, event);
     product.errorImage = true;
+  }
+
+  startFunFactRotation(): void {
+    this.showRandomFact(); // Show immediately
+    this.funFactInterval = setInterval(() => {
+      this.showRandomFact();
+    }, 60000); // Every 10 seconds
+  }
+
+  showRandomFact(): void {
+    const randomIndex = Math.floor(Math.random() * this.funFacts.length);
+    this.currentFunFact = this.funFacts[randomIndex];
+    this.showFunFact = true;
+
+    // // Optional: Auto-hide after a few seconds
+    // setTimeout(() => {
+    //   this.showFunFact = false;
+    // }, 5000); // Hide after 5 seconds
+  }
+
+  closeFunFact() {
+    this.showFunFact = false; // Hilangkan popup
   }
 }

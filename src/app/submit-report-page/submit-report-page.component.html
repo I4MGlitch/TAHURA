@@ -1,0 +1,55 @@
+<div class="submit-report-background">
+    <div class="container-fluid p-0 submit-report-content">
+        <div class="row g-0" style="padding-top: 9vh;">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6 p-2 mt-4">
+                <div class="card bg-white border-0 shadow-lg">
+                    <div class="card-header text-center bg-white border-0">
+                        <p class="fw-bold text-success fs-1">Submit Your Report</p>
+                        <p class="fs-4 text-muted">Let us know if you have any feedback, issues, or suggestions!</p>
+                    </div>
+                
+                    <div class="card-body border-0">
+                        <!-- Form -->
+                        <form (ngSubmit)="onSubmit()">
+                            <div class="mb-3">
+                              <label for="reportMessage" class="form-label fw-semibold">Your Message</label>
+                              <textarea
+                                id="reportMessage"
+                                class="form-control"
+                                rows="6"
+                                name="description"
+                                [(ngModel)]="report.description"
+                                required
+                                placeholder="Type your report here...">
+                              </textarea>
+                            </div>
+                          
+                            <div class="d-grid gap-2">
+                              <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fa-solid fa-paper-plane me-2"></i> Send Report
+                              </button>
+                            </div>
+                          </form>                          
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+  <button class="btn btn-success chatbot-float">
+      <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+      <div class="text-start">
+        <div class="fw-bold">TAHURA</div>
+        <div>CHATBOT</div>
+      </div>
+  </button>
+</a>

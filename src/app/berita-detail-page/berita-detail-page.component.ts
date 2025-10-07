@@ -9,9 +9,10 @@ declare var Swiper: any;
   styleUrls: ['./berita-detail-page.component.css']
 })
 export class BeritaDetailPageComponent {
-  public beritas: any[] = [];
+  public beritaspartial: any[] = [];
   beritaId: string | null = null;
   beritaDetails: any;
+  public loading: boolean = true;
   @ViewChild('topElement') topElement!: ElementRef;
 
   constructor(
@@ -31,28 +32,32 @@ export class BeritaDetailPageComponent {
           (details: any) => {
             this.ngZone.run(() => {
               this.beritaDetails = details;
+              this.loading = false;
               console.log('Berita details:', this.beritaDetails);
             });
           },
           error => {
             console.error('Error getting berita details:', error);
+            this.loading = false;
           }
         );
       } else {
         console.error('Berita ID is null.');
+        this.loading = false;
       }
       this.renderer.setProperty(document.documentElement, 'scrollTop', 0);
       this.renderer.setProperty(document.body, 'scrollTop', 0);
     });
 
     this.ngZone.runOutsideAngular(() => {
-      this.getAllBerita();
+      this.getPartialBerita();
     });
   }
 
   ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(() => {
       // Initialize swiper1
+      this.loading = false;
       const swiper1 = new Swiper('.container1', {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -181,11 +186,11 @@ export class BeritaDetailPageComponent {
     });
   }
 
-  getAllBerita() {
-    this.berita.getAllBerita().subscribe(
+  getPartialBerita() {
+    this.berita.getPartialBerita().subscribe(
       (beritas: any[]) => {
         this.ngZone.run(() => {
-          this.beritas = beritas;
+          this.beritaspartial = beritas;
         });
       },
       error => {

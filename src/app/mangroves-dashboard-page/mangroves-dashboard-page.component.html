@@ -1,0 +1,164 @@
+<div class="mangroves-dashboard-background">
+    <div class="container mangroves-dashboard-content mt-4">
+        <h2 class="text-center mb-4 text-success fw-bold mt-4 fs-1">Mangrove Real-Time Dashboard</h2>
+
+        <!-- Info Cards -->
+        <div class="row g-4">
+            <div class="col-md-3 col-sm-6" *ngFor="let item of infoCards">
+            <div class="card shadow-sm border-0 text-center p-3 chart-card">
+                <h5 class="fw-semibold">{{ item.title }}</h5>
+                <p class="display-6 fw-bold text-success">{{ item.value }}</p>
+            </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="row mt-5">
+
+            <!-- Temperature & Salinity -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Temperature & Salinity</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="temperatureSalinityChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Soil Moisture -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Soil Moisture</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="soilMoistureChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Water Level -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Water Level</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="waterLevelChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- CO2 Concentration -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">CO₂ Concentration</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="co2Chart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Wind Speed -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Wind Speed</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="windSpeedChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Salinity -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Salinity</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="salinityChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Soil pH -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">pH Soil</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="phChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Tidal Amplitude -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Tidal Amplitude</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="tidalChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Rainfall -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Rainfall</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="rainfallChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Solar Radiation -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Solar Radiation</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="radiationChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Air Temperature -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Air Temperature</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="tempChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Leaf Density -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Leaf Density</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="leafDensityChart"></canvas>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Sediment Rate -->
+            <div class="col-md-6">
+              <div class="card p-3 mb-4 shadow-sm border-0 chart-card">
+                <p class="card-title text-center mb-3">Sediment Rate</p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <canvas id="sedimentChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+          
+    </div>
+</div>
+
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+  <button class="btn btn-success chatbot-float">
+      <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+      <div class="text-start">
+        <div class="fw-bold">TAHURA</div>
+        <div>CHATBOT</div>
+      </div>
+  </button>
+</a>

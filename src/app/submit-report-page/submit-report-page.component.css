@@ -1,0 +1,10 @@
+.submit-report-background{
+    background-image: url(../../assets/Images/forest-background2-03.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 110vh;
+}
+.submit-report-content{
+    height: auto;
+}

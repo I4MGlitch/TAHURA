@@ -1,31 +1,33 @@
 <div class="gallery-page-background">
-    <div class="container gallery-content pt-5">
-        <div class="row">
-            <div class="col-xl-8">
+    <div class="container gallery-content pt-5" style="padding-bottom: 5vh;">
+        <div class="row" style="margin-top: 10vh;">
+            <div class="col-xl-8 col-12">
+                <div class="row">
                 <div class="container">
                     <div class="d-flex justify-content-between">
-                        <h2 class="text-center">Flora</h2>
-                        <a href="#" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+                        <h2 class="text-center sub-title">Flora</h2>
+                        <a routerLink="/flora-page" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="swiper-container container3 mt-5">
                         <div class="swiper-wrapper">
-                            <div *ngFor="let flora of floras.slice(11, 20)" class="swiper-slide col-4">
+                            <div *ngFor="let flora of floraspartial.slice(1, 5)" class="swiper-slide col-4">
                                 <div class="card-items">
                                     <img [src]="flora.photos.length > 0 ? getImageUrl(flora.photos[0]?.data) : getErrorImageUrl()"
                                         class="img-fluid" alt="{{ flora.name }} Image"
-                                        (error)="handleImageError($event, flora)" />
+                                        (error)="handleImageError($event, floraspartial)" />
                                     <div class="intro">
-                                        <div class="intro-title-panel d-flex align-items-end">
-                                            <p class="intro-title title-clamp">
+                                        <div class="intro-title-panel">
+                                            <small class="intro-title title-clamp">
                                                 {{ flora.name }}
-                                            </p>
+                                            </small>
+                                            <small class="sub-intro-title title-clamp">
+                                                ({{ flora.nameIlmiah }})
+                                            </small>
                                         </div>
                                         <p class="intro-des card-clamp text-justify">
                                             {{ flora.short_description }}
                                         </p>
-                                        <a href="#" class="btn btn-readmore intro-btn">
-                                            Read More
-                                        </a>
+                                        <a [routerLink]="['/detail-page', 'flora', flora._id]" class="btn btn-readmore intro-btn">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -37,30 +39,33 @@
                         </div>
                     </div>
                 </div>
+                </div>
+                <div class="row">
                 <div class="container">
                     <div class="d-flex justify-content-between">
-                        <h2 class="text-center">Fauna</h2>
-                        <a href="#" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+                        <h2 class="text-center sub-title">Fauna</h2>
+                        <a routerLink="/fauna-page" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="swiper-container container3 mt-5">
                         <div class="swiper-wrapper">
-                            <div *ngFor="let fauna of faunas.slice(11, 20)" class="swiper-slide col-4">
+                            <div *ngFor="let fauna of faunaspartial.slice(1, 5)" class="swiper-slide col-4">
                                 <div class="card-items">
                                     <img [src]="fauna.photos.length > 0 ? getImageUrl(fauna.photos[0]?.data) : getErrorImageUrl()"
                                         class="img-fluid" alt="{{ fauna.name }} Image"
-                                        (error)="handleImageError($event, faunas)" />
+                                        (error)="handleImageError($event, faunaspartial)" />
                                     <div class="intro">
-                                        <div class="intro-title-panel d-flex align-items-end">
-                                            <p class="intro-title title-clamp">
+                                        <div class="intro-title-panel">
+                                            <small class="intro-title title-clamp">
                                                 {{ fauna.name }}
-                                            </p>
+                                            </small>
+                                            <small class="sub-intro-title title-clamp">
+                                                ({{ fauna.nameIlmiah }})
+                                            </small>
                                         </div>
                                         <p class="intro-des card-clamp text-justify">
                                             {{ fauna.short_description }}
                                         </p>
-                                        <a href="#" class="btn btn-readmore intro-btn">
-                                            Read More
-                                        </a>
+                                        <a [routerLink]="['/detail-page', 'fauna', fauna._id]" class="btn btn-readmore intro-btn">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -72,24 +77,24 @@
                         </div>
                     </div>
                 </div>
-
+                </div>
             </div>
 
-            <div class="col-xl-4">
+            <div class="col-xl-4 col-12">
                 <div class="d-flex justify-content-between">
-                    <p>Terkini</p>
-                    <a href="#" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+                    <p class="sub-title">Terkini</p>
+                    <a routerLink="/berita-page" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <div class="row">
-                    <div class="col-xl-12 col-6" *ngFor="let berita of beritas.slice(0, 2)">
+                <div class="row" style="padding-bottom: 50vh;">
+                    <div class="col-xl-12 col-6 mb-3" *ngFor="let berita of beritaspartial.slice(0, 2)">
                         <div class="card">
                             <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
-                                class="img-fluid" alt="{{ berita.title }} Image"
-                                (error)="handleImageError($event, beritas)" />
-                            <div class="card-body">
-                                <h5 class="card-title berita-title">{{ berita.title }}</h5>
+                                class="img-fluid terkini-image" alt="{{ berita.title }} Image"
+                                (error)="handleImageError($event, beritaspartial)" />
+                            <div class="card-body text-justify">
+                                <h5 class="card-title berita-title-clamp">{{ berita.title }}</h5>
                                 <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small></p>
-                                <p class="card-text">{{ berita.short_description }}</p>
+                                <p class="card-text berita-clamp clamp-hyphens">{{ berita.short_description }}</p>
                                 <div class="d-flex justify-content-end align-items-end">
                                     <a [routerLink]="'/beritaDetail-page/' + berita._id" class="btn btn-readmore">Read
                                         More</a>
@@ -102,7 +107,26 @@
         </div>
     </div>
 </div>
-<div class="tahuraTransition">
-    <div class="tahuraFooter">
-    </div>
+
+<div *ngIf="showFunFact" class="funfact-popup">
+    <button class="close-btn" (click)="closeFunFact()">×</button>
+    <div class="funfact-header fw-bold text-success mb-2">Did You Know?</div>
+    <!-- <img src="../../assets/Images/flora1.jpg" alt="Fun Fact" class="funfact-img mb-2"> -->
+    <p class="funfact-text text-secondary des-clamp">
+        {{ currentFunFact }}
+    </p>
+    <a routerLink="/fauna-page" class="d-flex justify-content-center">
+        <button type="button" class="btn btn-success btn-sm">See more</button>
+    </a>
 </div>
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+    <button class="btn btn-success chatbot-float">
+        <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+        <div class="text-start">
+          <div class="fw-bold">TAHURA</div>
+          <div>CHATBOT</div>
+        </div>
+    </button>
+ </a>

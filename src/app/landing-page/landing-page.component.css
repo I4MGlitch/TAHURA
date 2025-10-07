@@ -12,6 +12,11 @@
 
 .tahuraLanding h1 {
     padding-top: 20vh;
+    color: #2f4f4f;
+}
+
+.tahuraLanding p {
+    color: #2f4f4f;
 }
 
 .tahuraFloraFauna {
@@ -27,14 +32,48 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 200vh;
+    height: 180vh;
 }
 
 .tahuraAboutUs {
-    height: 160vh;
+    height: auto;
     background-color: #89D0EB;
+    /* background-color: lightgreen; */
     position: relative;
     /* color: white; */
+}
+
+.tahuraAboutUs .card{
+    padding: 2vh;
+}
+
+
+.tahuraAboutUs p{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 1000px) {
+    .tahuraFloraFauna{
+        height: 200vh;
+    }
+    .tahuraAboutUs p{
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .tahuraFloraFauna{
+        height: 150vh;
+    }
+    .tahuraAboutUs p{
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .tahuraBerita {
+        height: 140vh;
+    }
 }
 
 .tahuraAboutUs p {
@@ -52,5 +91,7 @@
     object-fit: cover;
     /* Ensures the image covers the entire slide area without distortion */
 }
+
+
 
 /* LANDING PAGE END */

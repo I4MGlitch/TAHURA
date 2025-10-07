@@ -1,1 +1,62 @@
-<p>fauna-page works!</p>
+<div class="fauna">
+    <div class="container fauna-content">
+        <h1>FAUNA</h1>
+
+        <!-- Search Bar -->
+        <div class="search-bar mt-4 mb-4">
+            <form class="d-flex ms-auto" (ngSubmit)="onSearch()">
+                <input class="form-control me-2" type="search" placeholder="Search Flora or Fauna" aria-label="Search"
+                    [(ngModel)]="searchTerm" name="searchTerm">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="row" style="padding-bottom: 50vh;">
+            <div *ngFor="let fauna of filteredFaunas()" class="col-md-4 col-6 mt-4">
+                <div class="card-items">
+                    <img [src]="fauna.photos.length > 0 ? getImageUrl(fauna.photos[0]?.data) : getErrorImageUrl()"
+                        class="img-fluid" alt="{{ fauna.name }} Image" (error)="handleImageError($event, faunas)">
+                    <div class="intro">
+                        <div class="intro-title-panel flex row align-items-end">
+                            <small class="intro-title title-clamp">{{ fauna.name }}</small>
+                            <small class="sub-intro-title title-clamp">({{ fauna.nameIlmiah }})</small>
+                        </div>
+                        <p class="intro-des card-clamp text-justify">
+                            {{ fauna.short_description }}
+                        </p>
+                        <a [routerLink]="['/detail-page', 'fauna', fauna._id]" class="btn btn-readmore intro-btn">Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isLoading" class="loading-indicator d-flex justify-content-center align-items-center mt-4">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showFunFact" class="funfact-popup">
+    <button class="close-btn" (click)="closeFunFact()">×</button>
+    <div class="funfact-header fw-bold text-success mb-2">Did You Know?</div>
+    <!-- <img src="../../assets/Images/flora1.jpg" alt="Fun Fact" class="funfact-img mb-2"> -->
+    <p class="funfact-text text-secondary des-clamp">
+        {{ currentFunFact }}
+    </p>
+    <a routerLink="/fauna-page" class="d-flex justify-content-center">
+        <button type="button" class="btn btn-success btn-sm">See more</button>
+    </a>
+</div>
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+    <button class="btn btn-success chatbot-float">
+        <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+        <div class="text-start">
+          <div class="fw-bold">TAHURA</div>
+          <div>CHATBOT</div>
+        </div>
+    </button>
+ </a>

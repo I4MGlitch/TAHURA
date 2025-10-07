@@ -4,10 +4,11 @@
             <div class="d-flex justify-content-center" style="padding-top: 5rem;">
                 <div class="card text-center bg-transparent border-0" style="width: 40rem;">
                     <div class="card-body">
-                        <h1 class="card-title h1">Card title</h1>
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                            unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <h1 class="card-title h1">Tahura Mangrove</h1>
+                        <p class="card-text">Tahura Mangrove adalah sebuah situs web yang berfungsi sebagai perpustakaan 
+                            digital tentang semua flora dan fauna yang hidup di ekosistem mangrove di Ngurah Rai. 
+                            Situs ini juga menyediakan berita-berita terkini terkait mangrove.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -20,27 +21,28 @@
         <div class="container">
             <h2 class="text-center section-title">Flora</h2>
             <div class="row">
-                <a href="#" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+                <a routerLink="/flora-page" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="swiper-container container1 mt-5">
                 <div class="swiper-wrapper">
-                    <div *ngFor="let flora of floras.slice(0, 20)" class="swiper-slide col-4">
+                    <div *ngFor="let flora of floraspartial" class="swiper-slide col-4">
                         <div class="card-items">
                             <img [src]="flora.photos.length > 0 ? getImageUrl(flora.photos[0]?.data) : getErrorImageUrl()"
                                 class="img-fluid" alt="{{ flora.name }} Image"
                                 (error)="handleImageError($event, flora)" />
                             <div class="intro">
-                                <div class="intro-title-panel d-flex align-items-end">
-                                    <p class="intro-title title-clamp">
+                                <div class="intro-title-panel">
+                                    <small class="intro-title title-clamp">
                                         {{ flora.name }}
-                                    </p>
+                                    </small>
+                                    <small class="sub-intro-title title-clamp">
+                                        ({{ flora.nameIlmiah }})
+                                    </small>
                                 </div>
                                 <p class="intro-des card-clamp text-justify">
                                     {{ flora.short_description }}
                                 </p>
-                                <a href="#" class="btn btn-readmore intro-btn">
-                                    Read More
-                                </a>
+                                <a [routerLink]="['/detail-page', 'flora', flora._id]" class="btn btn-readmore intro-btn">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -56,27 +58,28 @@
         <div class="container">
             <h2 class="text-center section-title">Fauna</h2>
             <div class="row">
-                <a href="#" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+                <a routerLink="/fauna-page" class="text-end a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="swiper-container container1 mt-5">
                 <div class="swiper-wrapper">
-                    <div *ngFor="let fauna of faunas.slice(0, 20)" class="swiper-slide col-4">
+                    <div *ngFor="let fauna of faunaspartial.slice(0, 5)" class="swiper-slide col-4">
                         <div class="card-items">
                             <img [src]="fauna.photos.length > 0 ? getImageUrl(fauna.photos[0]?.data) : getErrorImageUrl()"
                                 class="img-fluid" alt="{{ fauna.name }} Image"
-                                (error)="handleImageError($event, faunas)" />
+                                (error)="handleImageError($event, faunaspartial)" />
                             <div class="intro">
-                                <div class="intro-title-panel d-flex align-items-end">
-                                    <p class="intro-title title-clamp">
+                                <div class="intro-title-panel">
+                                    <small class="intro-title title-clamp">
                                         {{ fauna.name }}
-                                    </p>
+                                    </small>
+                                    <small class="sub-intro-title title-clamp">
+                                        ({{ fauna.nameIlmiah }})
+                                    </small>
                                 </div>
                                 <p class="intro-des card-clamp text-justify">
                                     {{ fauna.short_description }}
                                 </p>
-                                <a href="#" class="btn btn-readmore intro-btn">
-                                    Read More
-                                </a>
+                                <a [routerLink]="['/detail-page', 'fauna', fauna._id]" class="btn btn-readmore intro-btn">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -96,23 +99,23 @@
                 <div class="col-xl-8">
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="sub-title pt-2">Populer</p>
-                        <a href="#" class="a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+                        <a routerLink="/berita-page" class="a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="row">
-                        <div class="col-xl-12 col-6" *ngFor="let berita of beritas.slice(0, 2)">
+                        <div class="col-xl-12 col-6" *ngFor="let berita of beritaspartial.slice(3, 5)">
                             <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-xl-4">
                                         <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
-                                            class="img-fluid" alt="{{ berita.title }} Image"
-                                            (error)="handleImageError($event, beritas)" />
+                                            class="berita-image img-fluid" alt="{{ berita.title }} Image"
+                                            (error)="handleImageError($event, beritaspartial)" />
                                     </div>
-                                    <div class="col-xl-8">
-                                        <div class="card-body berita-card">
-                                            <h5 class="card-title berita-title">{{ berita.title }}</h5>
+                                    <div class="col-xl-8 text-justify">
+                                        <div class="card-body berita-card text-justify">
+                                            <h5 class="card-title berita-title-clamp">{{ berita.title }}</h5>
                                             <p class="card-text"><small class="text-body-secondary">{{ berita.date
                                                     }}</small></p>
-                                            <p class="card-text">{{ berita.short_description }}</p>
+                                            <p class="card-text berita-clamp clamp-hyphens">{{ berita.short_description }}</p>
                                             <div class="d-flex justify-content-end align-items-end">
                                                 <a [routerLink]="'/beritaDetail-page/' + berita._id"
                                                     class="btn btn-readmore">Read More</a>
@@ -128,19 +131,19 @@
                 <div class="col-xl-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="sub-title pt-2">Terkini</p>
-                        <a href="#" class="a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+                        <a routerLink="/berita-page" class="a-tag">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="row">
-                        <div class="col-xl-12 col-6" *ngFor="let berita of beritas.slice(2, 4)">
-                            <div class="card">
+                        <div class="col-xl-12 col-6 mb-3" *ngFor="let berita of beritaspartial.slice(2, 4)">
+                            <div class="card mb-1">
                                 <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
-                                    class="img-fluid" alt="{{ berita.title }} Image"
-                                    (error)="handleImageError($event, beritas)" />
-                                <div class="card-body">
-                                    <h5 class="card-title berita-title">{{ berita.title }}</h5>
+                                    class="img-fluid terkini-image" alt="{{ berita.title }} Image"
+                                    (error)="handleImageError($event, beritaspartial)" />
+                                <div class="card-body text-justify">
+                                    <h5 class="card-title berita-title-clamp">{{ berita.title }}</h5>
                                     <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small>
                                     </p>
-                                    <p class="card-text">{{ berita.short_description }}</p>
+                                    <p class="card-text berita-clamp clamp-hyphens">{{ berita.short_description }}</p>
                                     <div class="d-flex justify-content-end align-items-end">
                                         <a [routerLink]="'/beritaDetail-page/' + berita._id"
                                             class="btn btn-readmore">Read
@@ -155,26 +158,60 @@
         </div>
     </div>
 
-    <div class="tahuraAboutUs">
-        <h4 class="text-center mb-5 section-title">About Us</h4>
+    <div class="tahuraAboutUs" style="padding-bottom: 50vh;">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type
-                        specimen book. It has survived not only five centuries, but also the leap into
-                        electronic typesetting, remaining essentially unchanged. It was popularised in
-                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                        and more recently with desktop publishing software like Aldus PageMaker including
-                        versions of Lorem Ipsum.
-                    </p>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="../../assets/Images/logoTahura.png" class="img-fluid">
+                <div class="col-xl-12">
+                    <div class="card mb-3">
+                        <h4 class="text-center mb-5 section-title">About Us</h4>
+                        <div class="row g-0">
+                          <div class="col-xl-6">
+                            <div class="card-body text-justify">
+                                <p>
+                                    Tahura Mangrove adalah sebuah sumber daya digital yang didedikasikan untuk mendokumentasikan dan mempromosikan ekosistem mangrove di Ngurah Rai. 
+                                    Situs web ini berfungsi sebagai perpustakaan komprehensif, menyediakan informasi rinci tentang berbagai flora dan fauna yang mendiami 
+                                    lingkungan unik ini.
+                                    <br>
+                                    <br>Selain sebagai gudang pengetahuan, platform ini juga memberikan informasi terbaru tentang berita dan perkembangan 
+                                    terkait konservasi dan restorasi mangrove di wilayah tersebut.
+                                </p>
+                            </div>
+                          </div>
+                          <div class="col-xl-6 text-center">
+                            <img src="../../assets/Images/logoTahura.png" class="img-fluid">                            
+                          </div>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<div *ngIf="showFunFact" class="funfact-popup">
+    <button class="close-btn" (click)="closeFunFact()">×</button>
+    <div class="funfact-header fw-bold text-success mb-2">Did You Know?</div>
+    <p class="funfact-text text-secondary des-clamp">
+        {{ currentFunFact }}
+    </p>
+    <a routerLink="/gallery-page" class="d-flex justify-content-center">
+        <button type="button" class="btn btn-success btn-sm">See more</button>
+    </a>
+</div>
+  
+  
+
+<!-- Floating Chatbot Button -->
+ <a routerLink="/chatbot-page">
+    <button class="btn btn-success chatbot-float">
+        <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+        <div class="text-start">
+          <div class="fw-bold">TAHURA</div>
+          <div>CHATBOT</div>
+        </div>
+    </button>
+ </a>
+
+  
+  

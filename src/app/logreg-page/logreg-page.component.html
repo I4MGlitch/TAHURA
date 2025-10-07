@@ -1,0 +1,119 @@
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100 p-0 logregpage">
+    <!-- Back Button -->
+    <button class="btn-back">
+        <a routerLink="/" class="a-tag"><i class="fas fa-arrow-left arrowback"></i></a>
+    </button>
+    <div class="card logreg-card-size shadow">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="../../assets/Images/balipostcom_jadi-showcase-di-ktt-g20-2022-hutan-mangrove-bali-bersolek_01.jpg" class="img-fluid h-100 logreg-img" alt="Mangrove">
+            </div>
+            <div class="col-md-6 p-4">
+                <div class="login container grid" [ngClass]="{ active: isRegisterActive }">
+                    <div class="login__access" [ngClass]="{'d-none': isRegisterActive}">
+                        <h1 class="login__title">Sign In</h1>
+                        <div class="login__area text-center">
+                          <form class="login__form" (ngSubmit)="login()">
+                            <div class="login__content">
+                              <div class="login__box">
+                                <input 
+                                  type="email" 
+                                  id="email" 
+                                  required 
+                                  placeholder=" " 
+                                  class="login__input" 
+                                  [(ngModel)]="loginData.username" 
+                                  name="email"
+                                >
+                                <label for="email" class="login__label">Username</label>
+                                <i class="fa-solid fa-envelope login__icon"></i>
+                              </div>
+                              <div class="login__box mt-2">
+                                <input 
+                                  type="password" 
+                                  id="password" 
+                                  required 
+                                  placeholder=" " 
+                                  class="login__input" 
+                                  [(ngModel)]="loginData.password" 
+                                  name="password"
+                                >
+                                <label for="password" class="login__label">Password</label>
+                                <i class="fa-solid fa-eye-slash login__icon login__password" 
+                                   id="loginPassword" 
+                                   (click)="togglePassword('password', 'loginPassword')">
+                                </i>
+                              </div>
+                            </div>
+                            <button type="submit" class="login__button">Login</button>
+                          </form>
+                          <p class="login__switch mt-2">
+                            Don't have an account? 
+                            <button id="loginButtonRegister" (click)="showRegister()">Create Account</button>
+                          </p>
+                        </div>
+                    </div>
+                    
+                    <div class="login__register" [ngClass]="{'d-none': !isRegisterActive}">
+                        <h1 class="login__title">Sign Up</h1>
+                        <div class="login__area text-center">
+                            <form class="login__form" (ngSubmit)="register()">
+                                <div class="login__content grid">
+                                    <div class="login__box">
+                                        <input
+                                            type="text"
+                                            id="username"
+                                            required
+                                            placeholder=" "
+                                            class="login__input"
+                                            [(ngModel)]="registerData.username"
+                                            name="username"
+                                        />
+                                        <label for="username" class="login__label">Username</label>
+                                        <i class="fa-solid fa-id-card login__icon"></i>
+                                    </div>
+                                    <div class="login__box mt-2">
+                                        <input
+                                            type="email"
+                                            id="emailCreate"
+                                            required
+                                            placeholder=" "
+                                            class="login__input"
+                                            [(ngModel)]="registerData.email"
+                                            name="email"
+                                        />
+                                        <label for="emailCreate" class="login__label">Email</label>
+                                        <i class="fa-solid fa-envelope login__icon"></i>
+                                    </div>
+                                    <div class="login__box mt-2">
+                                        <input
+                                            type="password"
+                                            id="passwordCreate"
+                                            required
+                                            placeholder=" "
+                                            class="login__input"
+                                            [(ngModel)]="registerData.password"
+                                            name="password"
+                                        />
+                                        <label for="passwordCreate" class="login__label">Password</label>
+                                        <i
+                                            class="fa-solid fa-eye-slash login__icon login__password"
+                                            id="loginPasswordCreate"
+                                            (click)="togglePassword('passwordCreate', 'loginPasswordCreate')"
+                                        ></i>
+                                    </div>
+                                </div>
+                                <button type="submit" class="login__button">Create account</button>
+                            </form>
+                            <p class="login__switch mt-2">
+                                Already have an account?
+                                <button id="loginButtonAccess" (click)="showLogin()">Log In</button>
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

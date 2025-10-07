@@ -1,0 +1,20 @@
+.mangroves-dashboard-background{
+    background-image: url(../../assets/Images/wetland-background.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: auto;
+}
+
+/* @media screen and (max-width: 768px) {
+    .mangroves-dashboard-background{
+        height: 500vh;
+    }
+    
+} */
+
+.mangroves-dashboard-content{
+    padding-top: 9vh;
+    height: auto;
+    padding-bottom: 50vh;
+}

@@ -1,7 +1,6 @@
 /* BERITA PAGE */
 
 .berita-page-background {
-    margin-top: 10vh;
     background-image: url(../../assets/Images/forest-background2-03.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -9,13 +8,9 @@
 }
 
 .berita-page-content {
-    height: 340vh;
+    height: auto;
 }
 
-.artikel-lain {
-    width: 100%;
-    height: 30vh;
-}
 
 .berita-nav li {
     margin: 0 1vh 0 0;
@@ -31,11 +26,6 @@
     color: #1C4231;
     background-color: #FBFDE7;
     border-color: #FBFDE7;
-}
-
-.berita-title {
-    font-size: 24px;
-    font-weight: 600;
 }
 
 

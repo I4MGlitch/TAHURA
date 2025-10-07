@@ -1,28 +1,30 @@
-<div class="container berita-page-content pt-5">
-    <h3 class="text-center sub-title">Berita</h3>
-    <div class="row">
-        <div class="col-xl-8">
-            <div class="d-flex justify-content-between align-items-center">
-                <p class="sub-title pt-2">Populer</p>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-6" *ngFor="let berita of beritasPopuler">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-xl-4">
-                                <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
-                                    class="img-fluid" alt="{{ berita.title }} Image"
-                                    (error)="handleImageError($event, berita)" />
-                            </div>
-                            <div class="col-xl-8">
-                                <div class="card-body berita-card">
-                                    <h5 class="card-title berita-title">{{ berita.title }}</h5>
-                                    <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small>
-                                    </p>
-                                    <p class="card-text">{{ berita.short_description }}</p>
-                                    <div class="d-flex justify-content-end align-items-end">
-                                        <a [routerLink]="'/beritaDetail-page/' + berita._id" class="btn btn-readmore">Read
-                                            More</a>
+<div class="berita-page-background">
+    <div class="container berita-page-content pt-5">
+        <h3 class="text-center sub-title">Berita</h3>
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="sub-title pt-2">Populer</p>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-6" *ngFor="let berita of beritasPopuler">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-xl-4">
+                                    <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
+                                        class="berita-image img-fluid" alt="{{ berita.title }} Image"
+                                        (error)="handleImageError($event, berita)" />
+                                </div>
+                                <div class="col-xl-8 text-justify">
+                                    <div class="card-body berita-card text-justify">
+                                        <h5 class="card-title berita-title-clamp">{{ berita.title }}</h5>
+                                        <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small>
+                                        </p>
+                                        <p class="card-text berita-clamp clamp-hyphens">{{ berita.short_description }}</p>
+                                        <div class="d-flex justify-content-end align-items-end">
+                                            <a [routerLink]="'/beritaDetail-page/' + berita._id" class="btn btn-readmore">Read
+                                                More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -30,82 +32,105 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-xl-4">
-            <div class="d-flex justify-content-between align-items-center">
-                <p class="sub-title pt-2">Terkini</p>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-6" *ngFor="let berita of beritasTerkini">
-                    <div class="card mb-3">
-                        <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
-                            class="img-fluid" alt="{{ berita.title }} Image"
-                            (error)="handleImageError($event, berita)" />
-                        <div class="card-body">
-                            <h5 class="card-title berita-title">{{ berita.title }}</h5>
-                            <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small></p>
-                            <p class="card-text">{{ berita.short_description }}</p>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <a [routerLink]="'/beritaDetail-page/' + berita._id" class="btn btn-readmore">Read More</a>
+    
+            <div class="col-xl-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="sub-title pt-2">Terkini</p>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-6" *ngFor="let berita of beritasTerkini">
+                        <div class="card mb-3">
+                            <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
+                                class="terkini-image img-fluid" alt="{{ berita.title }} Image"
+                                (error)="handleImageError($event, berita)" />
+                            <div class="card-body text-justify">
+                                <h5 class="card-title berita-title-clamp">{{ berita.title }}</h5>
+                                <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small></p>
+                                <p class="card-text berita-clamp clamp-hyphens">{{ berita.short_description }}</p>
+                                <div class="d-flex justify-content-end align-items-end">
+                                    <a [routerLink]="'/beritaDetail-page/' + berita._id" class="btn btn-readmore">Read More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Pagination -->
-    <div class="row mt-5">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination berita-nav">
-                <li class="page-item" [class.disabled]="currentPage === 1">
-                    <a class="page-link" href="javascript:void(0);" aria-label="Previous"
-                        (click)="setPage(currentPage - 1)">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-
-                <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="page === currentPage">
-                    <a class="page-link" href="javascript:void(0);" (click)="setPage(page)">{{ page }}</a>
-                </li>
-
-                <li class="page-item" [class.disabled]="currentPage === totalPages">
-                    <a class="page-link" href="javascript:void(0);" aria-label="Next"
-                        (click)="setPage(currentPage + 1)">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- Additional content (Artikel Lain) -->
-    <div class="row mt-5">
-        <p class="text-start sub-title">Artikel Lain</p>
-        <div class="swiper-container container2 mt-5">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide col-3" *ngFor="let berita of beritas">
-                    <div class="card">
-                        <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
-                            class="artikel-lain" alt="{{ berita.title }} Image"
-                            (error)="handleImageError($event, berita)" />
-                        <div class="card-body">
-                            <h5 class="card-title">{{ berita.title }}</h5>
-                            <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small></p>
-                            <p class="card-text">{{ berita.short_description }}</p>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <a [routerLink]="'/beritaDetail-page/' + berita._id" class="btn btn-readmore">Read More</a>
+    
+        <!-- Pagination -->
+        <div class="row mt-5">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination berita-nav">
+                    <li class="page-item" [class.disabled]="currentPage === 1">
+                        <a class="page-link" href="javascript:void(0);" aria-label="Previous"
+                            (click)="setPage(currentPage - 1)">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+    
+                    <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="page === currentPage">
+                        <a class="page-link" href="javascript:void(0);" (click)="setPage(page)">{{ page }}</a>
+                    </li>
+    
+                    <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <a class="page-link" href="javascript:void(0);" aria-label="Next"
+                            (click)="setPage(currentPage + 1)">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    
+        <!-- Additional content (Artikel Lain) -->
+        <div class="row mt-5 text-justify" style="padding-bottom: 50vh;">
+            <p class="text-start sub-title">Artikel Lain</p>
+            <div class="swiper-container container2 mt-5">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide col-3" *ngFor="let berita of beritaspartial">
+                        <div class="card">
+                            <img [src]="berita.photos.length > 0 ? getImageUrl(berita.photos[0]?.data) : getErrorImageUrl()"
+                                class="artikel-lain" alt="{{ berita.title }} Image"
+                                (error)="handleImageError($event, berita)" />
+                            <div class="card-body">
+                                <h5 class="card-title title-clamp2">{{ berita.title }}</h5>
+                                <p class="card-text"><small class="text-body-secondary">{{ berita.date }}</small></p>
+                                <p class="card-text des-clamp">{{ berita.short_description }}</p>
+                                <div class="d-flex justify-content-end align-items-end">
+                                    <a [routerLink]="'/beritaDetail-page/' + berita._id" class="btn btn-readmore">Read More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Add Pagination -->
+                <div class="swiper-scrollbar"></div>
             </div>
-            <!-- Add Pagination -->
-            <div class="swiper-scrollbar"></div>
         </div>
     </div>
 </div>
+
+<div *ngIf="showFunFact" class="funfact-popup">
+    <button class="close-btn" (click)="closeFunFact()">×</button>
+    <div class="funfact-header fw-bold text-success mb-2">Did You Know?</div>
+    <!-- <img src="../../assets/Images/flora1.jpg" alt="Fun Fact" class="funfact-img mb-2"> -->
+    <p class="funfact-text text-secondary des-clamp">
+        {{ currentFunFact }}
+    </p>
+    <a routerLink="/fauna-page" class="d-flex justify-content-center">
+        <button type="button" class="btn btn-success btn-sm">See more</button>
+    </a>
+</div>
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+    <button class="btn btn-success chatbot-float">
+        <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+        <div class="text-start">
+          <div class="fw-bold">TAHURA</div>
+          <div>CHATBOT</div>
+        </div>
+    </button>
+ </a>

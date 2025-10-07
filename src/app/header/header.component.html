@@ -1,36 +1,148 @@
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-scrolled">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="../../assets/Images/PHDB.png" alt="PHDB" width="50" height="50" class="d-inline-block align-text-top">
-        <!-- <img src="../../assets/Images/logoTahura.png" class="img-fluid" alt="logoTahura" width="50" height="50" class="d-inline-block align-text-top"> -->
-      </a>
-      <a class="navbar-brand title" href="#">
-        TAHURA
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav text-center navbar-font">
-          <li class="nav-item nav-hover">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item nav-hover">
-            <a class="nav-link" href="#">Flora</a>
-          </li>
-          <li class="nav-item nav-hover">
-            <a class="nav-link" href="#">Fauna</a>
-          </li>
-          <li class="nav-item nav-hover">
-            <a class="nav-link" href="#">Gallery</a>
-          </li>
-          <li class="nav-item nav-hover">
-            <a class="nav-link" href="#">Berita</a>
-          </li>
-          <li class="nav-item nav-hover">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <img src="../../assets/Images/logoTahura.png" alt="PHDB" width="50" height="60"
+        class="d-inline-block align-text-top">
+    </a>
+    <a class="navbar-brand title" routerLink="/">TAHURA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav text-center navbar-font">
+        <li class="nav-item nav-margin" (click)="closeMenu()">
+          <a class="nav-link" routerLink="/flora-page">Flora</a>
+        </li>
+        <li class="nav-item nav-margin" (click)="closeMenu()">
+          <a class="nav-link" routerLink="/fauna-page">Fauna</a>
+        </li>
+        <li class="nav-item nav-margin" (click)="closeMenu()">
+          <a class="nav-link" routerLink="/gallery-page">Gallery</a>
+        </li>
+        <li class="nav-item nav-margin" (click)="closeMenu()">
+          <a class="nav-link" routerLink="/berita-page">News</a>
+        </li>
+        <li class="nav-item nav-margin dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Activity
+          </a>
+          <ul class="dropdown-menu dropmore text-center">
+            <li><a class="dropdown-item" routerLink="/learning-modules-page" (click)="closeMenu()">Learning Modules</a>
+            </li>
+            <li><a class="dropdown-item" routerLink="/socializing-spot-page" (click)="closeMenu()">Socializing Spot</a>
+            </li>
+            <li><a class="dropdown-item" routerLink="/quiz-page" (click)="closeMenu()">Quiz</a></li>
+            <li><a class="dropdown-item" routerLink="/submit-report-page" (click)="closeMenu()">Submit Report</a></li>
+          </ul>
+        </li>
+        <li class="nav-item nav-margin dropdown text-center">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+          </a>
+          <ul class="dropdown-menu dropmore text-center">
+            <li><a class="dropdown-item" routerLink="/mangroves-dashboard-page" (click)="closeMenu()">Mangrove Dashboard</a></li>
+            <li><a class="dropdown-item" routerLink="/event-calendar-page" (click)="closeMenu()">Event Calendar</a></li>
+            <li (click)="closeMenu()"><a class="dropdown-item" routerLink="/contact-page"
+                (click)="closeMenu()">Contact</a></li>
+
+          </ul>
+        </li>
+      </ul>
+
+      <form class="d-flex ms-auto me-2 dropitem" (ngSubmit)="onSearch()">
+        <input class="form-control me-2" type="search" placeholder="Search Flora or Fauna" aria-label="Search"
+          [(ngModel)]="searchTerm" name="searchTerm">
+        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+
+      <ul class="navbar-nav navbar-font">
+        <li class="nav-item d-flex justify-content-center dropitem" *ngIf="!isLoggedIn" (click)="closeMenu()">
+          <a class="nav-link navbar-btn text-center" routerLink="/logreg-page">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in
+          </a>
+        </li>
+
+        <!-- Displayed when user is logged in -->
+        <li class="nav-item dropdown dropitem" *ngIf="isLoggedIn">
+
+          <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" id="userDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img [src]="getProfilePic(userData.username)" alt="{{ userData.username }} Image" class="rounded-circle" width="30" height="30">
+            <span class="ms-2">{{ userData.username }}</span>
+          </a>
+
+          <ul class="dropdown-menu dropmore text-center" aria-labelledby="userDropdown">
+            <li>
+              <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#userSettingModal"><i
+                  class="fa-solid fa-gear"></i> Profile</button>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <div class="dropdown-item">
+                <button class="btn btn-danger" (click)="logout()">Logout</button>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Logout button displayed when logged in -->
+        <!-- <li class="nav-item dropitem" *ngIf="isLoggedIn">
+          <button class="d-flex align-content-center justify-content-center mt-2 btn btn-danger" (click)="logout()">Logout</button>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- User Setting Modal Section -->
+<div class="modal fade" id="userSettingModal" tabindex="-1" aria-labelledby="userSettingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h1 class="modal-title fs-5 text-white">User Profile Setting</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Image Preview -->
+        <div class="text-center">
+          <img [src]="imagePreview || (userData.photos && userData.photos.length > 0 && userData.photos[0]?.data && userData.photos[0]?.contentType !== ''  
+          ? getImageUrl(userData.photos[0].data)  
+          : getErrorImageUrl())" class="preview-modal-img">
+        </div>
+        <!-- Form -->
+        <form (submit)="editUser()">
+          <div class="form-group mt-2">
+            <label for="profileImage" class="mb-2">Profile Image Changes</label>
+            <input type="file" class="form-control" id="profileImage" accept="image/*" (change)="onFileChange($event)">
+            <small class="form-text text-muted">Image must be in .jpg, .jpeg, .png
+              format.</small>
+          </div>
+          <div class="form-group mt-2">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="userData.username" name="username"
+              placeholder="Enter username">
+          </div>
+          <div class="form-group mt-2">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="userData.email" name="email"
+              placeholder="Enter email">
+          </div>
+          <div class="form-group mt-2">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="userData.password" name="password"
+              placeholder="Enter password">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="editUser()">Save</button>
       </div>
     </div>
-  </nav>
+  </div>
+</div>

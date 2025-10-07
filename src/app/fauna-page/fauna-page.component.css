@@ -1,0 +1,19 @@
+.fauna{
+    background-color: white;
+    background-image: url('../../assets/Images/line-background.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* Cover the entire viewport */
+    background-attachment: fixed; /* Fixed background */
+    background-position: center; /* Center the background */ 
+}
+
+.fauna-content{
+    height: auto;
+}
+
+h1 {
+    padding-top: 20vh;
+    text-align: center;
+    color: #1C4231;
+}
+  

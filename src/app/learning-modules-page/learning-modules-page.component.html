@@ -1,0 +1,101 @@
+<div class="learning-modules-background">
+  <div class="container learning-modules-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center mt-4">
+          <p class="learning-modules-title">TAHURA <br> Learning Modules </p>
+        </div>
+      </div>
+    </div>
+    <div class="row p-2">
+      <div class="col-12 col-sm-6 col-md-6 mt-2 mb-2">
+        <form class="d-flex" role="search" (submit)="onSearchSubmit($event)">
+          <input [(ngModel)]="searchQuery" name="search" class="form-control me-2 shadow" type="search"
+            placeholder="Search modules" aria-label="Search">
+          <button class="btn btn-success shadow" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-6 mt-2">
+        <div class="btn-group category-bar" role="group" aria-label="Category filter">
+          <input type="radio" class="btn-check" name="category" id="category-all" (change)="onCategoryChange('All')"
+            autocomplete="off" checked>
+          <label class="btn category-item" for="category-all">All</label>
+
+          <input type="radio" class="btn-check" name="category" id="category-1"
+            (change)="onCategoryChange('infographic')" autocomplete="off">
+          <label class="btn category-item" for="category-1">Infographic</label>
+
+          <input type="radio" class="btn-check" name="category" id="category-2" (change)="onCategoryChange('article')"
+            autocomplete="off">
+          <label class="btn category-item" for="category-2">Article</label>
+
+          <input type="radio" class="btn-check" name="category" id="category-3" (change)="onCategoryChange('video')"
+            autocomplete="off">
+          <label class="btn category-item" for="category-3">Video</label>
+        </div>
+
+      </div>
+    </div>
+    <div class="row learning-modules-container mt-2 p-4 mb-4">
+      <div class="col-md-4 mb-2" *ngFor="let module of filteredModules">
+        <div class="card modules-card shadow-sm position-relative mt-4">
+          <p class="badge-modules position-absolute top-0 end-0 bg-success text-white m-2 px-2 py-1">
+            {{ module.category || 'category' }}
+          </p>
+          <img *ngIf="module?.photos && module.photos.length > 0" [src]="getImageUrl(module.photos[0].data)"
+            class="img-fluid modules-card-img" alt="Module Image" [attr.data-bs-toggle]="'modal'"
+            [attr.data-bs-target]="'#newsImageModal'">
+          <div class="card-body">
+            <p class="card-title title-clamp2 modules-card-title">{{ module.title }}</p>
+            <div class="d-flex justify-content-start">
+              <p class="modules-card-date me-1">{{ module.date | date: 'dd MMMM yyyy' }}</p>
+            </div>
+            <p class="card-text card-clamp">{{ module.description }}</p>
+          </div>
+          <div class="card-footer readmore-footer border-0 bg-white text-end">
+            <a [routerLink]="['/module-detail-page', module._id]" class="btn btn-outline-success">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination d-flex justify-content-center align-items-center mt-3 gap-2">
+      <button class="btn btn-light" (click)="goToPageLearningModule(currentPageLearningModule- 1)"
+        [disabled]="currentPageLearningModule === 1">
+        Previous
+      </button>
+      <span>Page</span>
+      <input type="number" [(ngModel)]="currentPageInputLearningModule" (keydown.enter)="changePageLearningModule()"
+        (blur)="validatePageInputLearningModule()" class="form-control text-center" style="width: 60px;" min="1"
+        [max]="totalPagesLearningModule">
+      <span>of {{ totalPagesLearningModule}}</span>
+      <button class="btn btn-light" (click)="goToPageLearningModule(currentPageLearningModule + 1)"
+        [disabled]="currentPageLearningModule === totalPagesLearningModule">
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showFunFact" class="funfact-popup">
+  <button class="close-btn" (click)="closeFunFact()">×</button>
+  <div class="funfact-header fw-bold text-success mb-2">Did You Know?</div>
+  <!-- <img src="../../assets/Images/flora1.jpg" alt="Fun Fact" class="funfact-img mb-2"> -->
+  <p class="funfact-text text-secondary des-clamp">
+      {{ currentFunFact }}
+  </p>
+  <a routerLink="/fauna-page" class="d-flex justify-content-center">
+      <button type="button" class="btn btn-success btn-sm">See more</button>
+  </a>
+</div>
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+  <button class="btn btn-success chatbot-float">
+      <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+      <div class="text-start">
+        <div class="fw-bold">TAHURA</div>
+        <div>CHATBOT</div>
+      </div>
+  </button>
+</a>

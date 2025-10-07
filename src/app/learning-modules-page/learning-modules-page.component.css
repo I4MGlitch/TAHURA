@@ -1,0 +1,12 @@
+.learning-modules-background{
+    background-image: url('../../assets/Images/forest-background-01.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+}
+.learning-modules-content{
+    height: auto;
+    padding-top: 9vh; padding-bottom: 50vh;
+}
+

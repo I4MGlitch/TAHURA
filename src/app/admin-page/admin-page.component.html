@@ -1,0 +1,2689 @@
+<div class="admin-background">
+
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <div class="col-md-2 admin-sidebar" id="sidebarContainer">
+                <div class="card mt-4 rounded-4">
+                    <div class="card-header border-0 bg-white mb-3">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="navbar-brand" routerLink="/" style="margin-right: 0.5vw;">
+                                <img src="../../assets/Images/logoTahura.png" alt="logo" width="50" height="60"
+                                    class="d-inline-block align-text-top">
+                            </a>
+                            <a class="navbar-brand title" routerLink="/">TAHURA</a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 border-0">
+                        <div class="nav flex-column nav-tabs sidebar-btn p-1" id="sidebarTab" role="tablist">
+                            <button class="nav-link active" id="sidebar-users-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-users-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-users-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-users me-2"></i>Users
+                            </button>
+                            <button class="nav-link" id="sidebar-flora-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-flora-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-flora-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-leaf me-2"></i>Flora
+                            </button>
+                            <button class="nav-link" id="sidebar-fauna-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-fauna-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-fauna-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-frog me-2"></i>Fauna
+                            </button>
+                            <button class="nav-link" id="sidebar-news-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-news-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-news-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-newspaper me-2"></i>News
+                            </button>
+                            <button class="nav-link" id="sidebar-modules-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-modules-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-modules-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-book me-2"></i>Learning Modules
+                            </button>
+                            <button class="nav-link" id="sidebar-community-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-community-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-community-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-camera-retro me-2"></i>Socializing Spot
+                            </button>
+                            <button class="nav-link" id="sidebar-quiz-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-quiz-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-quiz-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-list-check me-2"></i>Quiz
+                            </button>
+                            <button class="nav-link" id="sidebar-calendar-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-calendar-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-calendar-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-calendar me-2"></i>Event Calendar
+                            </button>
+                            <button class="nav-link" id="sidebar-reports-tab" data-bs-toggle="tab"
+                                data-bs-target="#sidebar-reports-tab-pane" type="button" role="tab"
+                                aria-controls="sidebar-reports-tab-pane" aria-selected="true">
+                                <i class="fa-solid fa-user-check me-2"></i>Reports
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center bg-white border-0">
+                        <button class="btn btn-danger w-100 rounded-4 shadow-lg" (click)="logout()">Sign Out</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offcanvas Sidebar (Mobile Mode) -->
+            <div class="offcanvas offcanvas-start admin-offcanvas" tabindex="-1" id="sidebarOffcanvas">
+                <div class="offcanvas-header d-flex justify-content-between">
+                    <div>
+                        <button class="nav-link d-flex">
+                            <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png" alt="Admin"
+                                width="30" height="30">
+                        </button>
+                    </div>
+                    <div>
+                        <h5 class="offcanvas-title admin-nav-title ps-4">Admin Menu</h5>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                </div>
+                <div class="offcanvas-body p-0">
+                    <div class="card border-0">
+                        <div class="card-body border-0">
+                            <div class="nav flex-column nav-tabs sidebar-btn">
+                                <button class="nav-link active" id="sidebar-users-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-users-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-users-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-users me-2"></i>Users
+                                </button>
+                                <button class="nav-link" id="sidebar-flora-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-flora-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-flora-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-leaf me-2"></i>Flora
+                                </button>
+                                <button class="nav-link" id="sidebar-fauna-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-fauna-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-fauna-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-frog me-2"></i>Fauna
+                                </button>
+                                <button class="nav-link" id="sidebar-news-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-news-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-news-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-newspaper me-2"></i>News
+                                </button>
+                                <button class="nav-link" id="sidebar-modules-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-modules-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-modules-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-book me-2"></i>Learning Modules
+                                </button>
+                                <button class="nav-link" id="sidebar-community-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-community-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-community-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-camera-retro me-2"></i>Socializing Spot
+                                </button>
+                                <button class="nav-link" id="sidebar-quiz-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-quiz-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-quiz-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-list-check me-2"></i>Quiz
+                                </button>
+                                <button class="nav-link" id="sidebar-calendar-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-calendar-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-calendar-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-calendar me-2"></i>Event Calendar
+                                </button>
+                                <button class="nav-link" id="sidebar-reports-tab" data-bs-toggle="tab"
+                                    data-bs-target="#sidebar-reports-tab-pane" type="button" role="tab"
+                                    aria-controls="sidebar-reports-tab-pane" aria-selected="true"
+                                    (click)="closeOffcanvas()">
+                                    <i class="fa-solid fa-user-check me-2"></i>Reports
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="offcanvas-footer">
+                    <div class="card border-0">
+                        <div class="card-body text-center border-0">
+                            <button class="btn btn-danger w-100 rounded-4 shadow-lg" (click)="logout()">Sign Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Main Content -->
+            <div class="col-md-10">
+                <div class="navbar bg-body-secondary admin-header rounded-4 m-2">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a class="navbar-brand" routerLink="/" style="margin-right: 0.5vw;">
+                                <img src="../../assets/Images/logoTahura.png" alt="logo" width="25" height="30"
+                                    class="d-inline-block align-text-top">
+                            </a>
+                            <a class="navbar-brand title" routerLink="/">TAHURA</a>
+                        </div>
+                        <span>
+                            <button class="admin-btn-offcanvas btn threelines" id="sidebarToggle"
+                                data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
+                                ☰
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="tab-content">
+
+                    <!-- Users Tab Pane Section -->
+                    <div class="tab-pane fade show active p-2" id="sidebar-users-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Users Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Users Table</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control admin-search"
+                                                placeholder="Search by Username" aria-label="Search">
+                                            <!-- <button type="submit" class="btn btn-search">
+                                            <i class="fa fa-search"></i>
+                                        </button> -->
+                                            <button type="button" class="btn btn-add d-flex align-items-center"
+                                                data-bs-toggle="modal" data-bs-target="#addUsersModal">
+                                                <i class="fa-solid fa-plus me-1"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-container admin-table-container mt-2">
+                                            <table class="table table-bordered admin-table users-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Profile</th>
+                                                        <th>Username</th>
+                                                        <th>Email</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let user of users; let i = index">
+                                                        <td>{{ i + 1 }}</td>
+                                                        <td class="text-center">
+                                                            <img [src]="(user.photos && user.photos.length > 0 && user.photos[0]?.data && user.photos[0]?.contentType !== ''  
+                                                                      ? getImageUrl(user.photos[0].data)  
+                                                                      : getErrorImageUrl())" class="profile-table-img"
+                                                                alt="{{ user.username }} Image" />
+
+                                                        </td>
+                                                        <td>{{ user.username }}</td>
+                                                        <td>{{ user.email }}</td>
+                                                        <td class="text-center">
+                                                            <div
+                                                                class="text-center d-flex flex-column align-items-center gap-2">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    (click)="deleteUser(user._id)">
+                                                                    <i class="fa-regular fa-trash-can"></i> Delete
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-toggle="modal"
+                                                                    [attr.data-bs-target]="'#editUsersModal'"
+                                                                    (click)="setSelectedUsers(user)">
+                                                                    <i class="fa-solid fa-ellipsis-vertical"></i> Edit
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="users.length === 0">
+                                                        <td colspan="5" class="text-center">No users found.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div
+                                                class="pagination d-flex justify-content-center align-items-center mt-3 gap-2">
+                                                <!-- Previous Button -->
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageUsers(currentPageUsers - 1)"
+                                                    [disabled]="currentPageUsers === 1">
+                                                    Previous
+                                                </button>
+
+                                                <!-- Page Input Field -->
+                                                <span>Page</span>
+                                                <input type="number" [(ngModel)]="currentPageInputUsers"
+                                                    (keydown.enter)="changePageUsers()"
+                                                    (blur)="validatePageInputUsers()" class="form-control text-center"
+                                                    style="width: 60px;" min="1" [max]="totalPagesUsers">
+                                                <span>of {{ totalPagesUsers }}</span>
+
+                                                <!-- Next Button -->
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageUsers(currentPageUsers + 1)"
+                                                    [disabled]="currentPageUsers === totalPagesUsers">
+                                                    Next
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Users Tab Pane End -->
+
+                    <!-- Flora Tab Pane Section -->
+                    <div class="tab-pane fade p-2" id="sidebar-flora-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Flora Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Flora Table</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control admin-search"
+                                                placeholder="Search by Name" aria-label="Search">
+                                            <!-- <button type="submit" class="btn btn-search">
+                                            <i class="fa fa-search"></i>
+                                        </button> -->
+                                            <button type="button" class="btn btn-add d-flex align-items-center"
+                                                data-bs-toggle="modal" data-bs-target="#addFloraModal">
+                                                <i class="fa-solid fa-plus me-1"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-container admin-table-container mt-2">
+                                            <div *ngIf="isLoading" class="text-center my-4">
+                                                <div class="spinner-border text-primary" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
+
+                                            <table *ngIf="!isLoading"
+                                                class="table table-bordered admin-table detail-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Images</th>
+                                                        <th>Name</th>
+                                                        <th>Ilmiah</th>
+                                                        <th>Characteristics</th>
+                                                        <th>Description</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let flora of floraList; let i = index">
+                                                        <td>{{ flora.no }}</td>
+                                                        <td class="text-center">
+                                                            <div id="floraCarousel{{i}}" class="carousel slide">
+                                                                <div class="carousel-inner">
+                                                                    <div class="carousel-item"
+                                                                        *ngFor="let photo of (flora?.photos); let j = index"
+                                                                        [ngClass]="{'active': j === 0}">
+                                                                        <img [src]="getImageUrl(photo.data)"
+                                                                            class="detail-table-img" alt="Flora Image"
+                                                                            (click)="setSelectedPhoto(photo.data, i)"
+                                                                            [attr.data-bs-toggle]="'modal'"
+                                                                            [attr.data-bs-target]="'#detailFloraModal' + i">
+
+                                                                    </div>
+                                                                </div>
+                                                                <button class="carousel-control-prev" type="button"
+                                                                    [attr.data-bs-target]="'#floraCarousel' + i"
+                                                                    data-bs-slide="prev">
+                                                                    <span class="carousel-control-prev-icon"
+                                                                        aria-hidden="true"
+                                                                        style="filter: invert(1);"></span>
+                                                                    <span class="visually-hidden">Previous</span>
+                                                                </button>
+                                                                <button class="carousel-control-next" type="button"
+                                                                    [attr.data-bs-target]="'#floraCarousel' + i"
+                                                                    data-bs-slide="next">
+                                                                    <span class="carousel-control-next-icon"
+                                                                        aria-hidden="true"
+                                                                        style="filter: invert(1);"></span>
+                                                                    <span class="visually-hidden">Next</span>
+                                                                </button>
+                                                            </div>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade"
+                                                                [id]="'detailFloraModal' + selectedIndex" tabindex="-1"
+                                                                aria-labelledby="detailModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body gallery-modal">
+                                                                            <img [src]="selectedImageUrl"
+                                                                                class="img-fluid modal-img"
+                                                                                alt="Modal Image">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </td>
+                                                        <td>{{ flora.name }}</td>
+                                                        <td>{{ flora.nameIlmiah }}</td>
+                                                        <td>
+                                                            <div class="long-cell">
+                                                                <ul>
+                                                                    <li><b>Kategori:</b> {{ flora.category }}</li>
+                                                                    <li><b>Bentuk:</b> {{ flora.bentuk }}</li>
+                                                                    <li><b>Akar:</b> {{ flora.akar }}</li>
+                                                                    <li><b>Daun:</b> {{ flora.daun }}</li>
+                                                                    <li><b>Tipe Biji:</b> {{ flora.tipeBiji }}</li>
+                                                                    <li><b>Lainnya:</b> {{ flora.lainnya }}</li>
+                                                                    <li><b>Kulit Kayu:</b> {{ flora.kulitKayu }}</li>
+                                                                    <li><b>Ciri Khusus:</b> {{ flora.ciriKhusus }}</li>
+                                                                    <li><b>Bunga:</b> {{ flora.bunga }}</li>
+                                                                    <li><b>Buah:</b> {{ flora.buah }}</li>
+                                                                    <li><b>Kegunaan:</b> {{ flora.kegunaan }}</li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="long-cell">
+                                                                {{ flora.description }}
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div
+                                                                class="text-center d-flex flex-column align-items-center gap-2">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    (click)="deleteFlora(flora._id)">
+                                                                    <i class="fa-regular fa-trash-can"></i> Delete
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-toggle="modal"
+                                                                    [attr.data-bs-target]="'#editFloraModal'"
+                                                                    (click)="setSelectedFlora(flora)">
+                                                                    <i class="fa-solid fa-ellipsis-vertical"></i> Edit
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div
+                                                class="pagination d-flex justify-content-center align-items-center mt-3 gap-2">
+                                                <!-- Previous Button -->
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageFlora(currentPageFlora - 1)"
+                                                    [disabled]="currentPageFlora === 1">
+                                                    Previous
+                                                </button>
+
+                                                <!-- Page Input Field -->
+                                                <span>Page</span>
+                                                <input type="number" [(ngModel)]="currentPageInputFlora"
+                                                    (keydown.enter)="changePageFlora() "
+                                                    (blur)="validatePageInputFlora()" class="form-control text-center"
+                                                    style="width: 60px;" min="1" [max]="totalPagesFlora">
+                                                <span>of {{ totalPagesFlora }}</span>
+
+                                                <!-- Next Button -->
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageFlora(currentPageFlora + 1)"
+                                                    [disabled]="currentPageFlora === totalPagesFlora">
+                                                    Next
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Flora Tab Pane End -->
+
+                    <!-- Fauna Tab Pane Section -->
+                    <div class="tab-pane fade p-2" id="sidebar-fauna-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Fauna Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Fauna Table</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control admin-search"
+                                                placeholder="Search by Name" aria-label="Search">
+                                            <button type="button" class="btn btn-add d-flex align-items-center"
+                                                data-bs-toggle="modal" data-bs-target="#addFaunaModal">
+                                                <i class="fa-solid fa-plus me-1"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-container admin-table-container mt-2">
+                                            <div *ngIf="isLoading" class="text-center my-4">
+                                                <div class="spinner-border text-primary" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
+
+                                            <table *ngIf="!isLoading"
+                                                class="table table-bordered admin-table detail-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Images</th>
+                                                        <th>Name</th>
+                                                        <th>Ilmiah</th>
+                                                        <th>Characteristics</th>
+                                                        <th>Description</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let fauna of faunaList; let i = index">
+                                                        <td>{{ fauna.no }}</td>
+                                                        <td class="text-center">
+                                                            <div id="faunaCarousel{{i}}" class="carousel slide">
+                                                                <div class="carousel-inner">
+                                                                    <div class="carousel-item"
+                                                                        *ngFor="let photo of (fauna?.photos); let j = index"
+                                                                        [ngClass]="{'active': j === 0}">
+                                                                        <img [src]="getImageUrl(photo.data)"
+                                                                            class="detail-table-img" alt="Fauna Image"
+                                                                            (click)="setSelectedPhoto(photo.data, i)"
+                                                                            [attr.data-bs-toggle]="'modal'"
+                                                                            [attr.data-bs-target]="'#detailFaunaModal' + i">
+                                                                    </div>
+                                                                </div>
+                                                                <button class="carousel-control-prev" type="button"
+                                                                    [attr.data-bs-target]="'#faunaCarousel' + i"
+                                                                    data-bs-slide="prev">
+                                                                    <span class="carousel-control-prev-icon"
+                                                                        aria-hidden="true"
+                                                                        style="filter: invert(1);"></span>
+                                                                    <span class="visually-hidden">Previous</span>
+                                                                </button>
+                                                                <button class="carousel-control-next" type="button"
+                                                                    [attr.data-bs-target]="'#faunaCarousel' + i"
+                                                                    data-bs-slide="next">
+                                                                    <span class="carousel-control-next-icon"
+                                                                        aria-hidden="true"
+                                                                        style="filter: invert(1);"></span>
+                                                                    <span class="visually-hidden">Next</span>
+                                                                </button>
+                                                            </div>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade"
+                                                                [id]="'detailFaunaModal' + selectedIndex" tabindex="-1"
+                                                                aria-labelledby="detailModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body gallery-modal">
+                                                                            <img [src]="selectedImageUrl"
+                                                                                class="img-fluid modal-img"
+                                                                                alt="Modal Image">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ fauna.name }}</td>
+                                                        <td>{{ fauna.nameIlmiah }}</td>
+                                                        <td>
+                                                            <div class="long-cell">
+                                                                <ul>
+                                                                    <li><b>Kategori:</b> {{ fauna.category }}</li>
+                                                                    <li><b>Habitat:</b> {{ fauna.habitat }}</li>
+                                                                    <li><b>Panjang:</b> {{ fauna.panjang }}</li>
+                                                                    <li><b>Lebar:</b> {{ fauna.lebar }}</li>
+                                                                    <li><b>Warna:</b> {{ fauna.warna }}</li>
+                                                                    <li><b>Makanan:</b> {{ fauna.makanan }}</li>
+                                                                    <li><b>Reproduksi:</b> {{ fauna.reproduksi }}</li>
+                                                                    <li><b>Adaptasi:</b> {{ fauna.adaptasi }}</li>
+                                                                    <li><b>Gerakan:</b> {{ fauna.gerakan }}</li>
+                                                                    <li><b>Alat Gerak:</b> {{ fauna.alatGerak }}</li>
+                                                                    <li><b>Bentuk Tubuh:</b> {{ fauna.bentukTubuh }}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="long-cell">
+                                                                {{ fauna.description }}
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div
+                                                                class="text-center d-flex flex-column align-items-center gap-2">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    (click)="deleteFauna(fauna._id)">
+                                                                    <i class="fa-regular fa-trash-can"></i> Delete
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-toggle="modal"
+                                                                    [attr.data-bs-target]="'#editFaunaModal'"
+                                                                    (click)="setSelectedFauna(fauna)">
+                                                                    <i class="fa-solid fa-ellipsis-vertical"></i> Edit
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div
+                                                class="pagination d-flex justify-content-center align-items-center mt-3 gap-2">
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageFauna(currentPageFauna - 1)"
+                                                    [disabled]="currentPageFauna === 1">
+                                                    Previous
+                                                </button>
+                                                <span>Page</span>
+                                                <input type="number" [(ngModel)]="currentPageInputFauna"
+                                                    (keydown.enter)="changePageFauna()"
+                                                    (blur)="validatePageInputFauna()" class="form-control text-center"
+                                                    style="width: 60px;" min="1" [max]="totalPagesFauna">
+                                                <span>of {{ totalPagesFauna }}</span>
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageFauna(currentPageFauna + 1)"
+                                                    [disabled]="currentPageFauna === totalPagesFauna">
+                                                    Next
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fauna Tab Pane End -->
+
+                    <!-- News Tab Pane Section -->
+                    <div class="tab-pane fade p-2" id="sidebar-news-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">News Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">News Table</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control admin-search"
+                                                placeholder="Search by Title">
+                                            <button type="button" class="btn btn-add d-flex align-items-center"
+                                                data-bs-toggle="modal" data-bs-target="#addNewsModal">
+                                                <i class="fa-solid fa-plus me-1"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-container admin-table-container mt-2">
+                                            <table class="table table-bordered admin-table news-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Images</th>
+                                                        <th>News Title</th>
+                                                        <th>Upload Date</th>
+                                                        <th>Description</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let berita of beritaList; let i = index">
+                                                        <td>{{ berita.no }}</td>
+                                                        <td class="text-center">
+                                                            <img *ngIf="berita?.photos && berita.photos.length > 0"
+                                                                [src]="getImageUrl(berita.photos[0].data)"
+                                                                class="detail-table-img" alt="News Image"
+                                                                (click)="setSelectedPhoto(berita.photos[0].data, 0)"
+                                                                [attr.data-bs-toggle]="'modal'"
+                                                                [attr.data-bs-target]="'#newsImageModal'">
+                                                        </td>
+                                                        <td>{{ berita.title }}</td>
+                                                        <td>{{ berita.date | date:'dd MMM yyyy' }}</td>
+                                                        <td>
+                                                            <div class="long-cell">
+                                                                <p>{{ berita.short_description }}</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div
+                                                                class="text-center d-flex flex-column align-items-center gap-2">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    (click)="deleteBerita(berita._id)">
+                                                                    <i class="fa-regular fa-trash-can"></i> Delete
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#editNewsModal"
+                                                                    (click)="setSelectedBerita(berita)">
+                                                                    <i class="fa-solid fa-ellipsis-vertical"></i> Edit
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div
+                                                class="pagination d-flex justify-content-center align-items-center mt-3 gap-2">
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageBerita(currentPageBerita - 1)"
+                                                    [disabled]="currentPageBerita === 1">
+                                                    Previous
+                                                </button>
+                                                <span>Page</span>
+                                                <input type="number" [(ngModel)]="currentPageInputBerita"
+                                                    (keydown.enter)="changePageBerita()"
+                                                    (blur)="validatePageInputBerita()" class="form-control text-center"
+                                                    style="width: 60px;" min="1" [max]="totalPagesBerita">
+                                                <span>of {{ totalPagesBerita }}</span>
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageBerita(currentPageBerita + 1)"
+                                                    [disabled]="currentPageBerita === totalPagesBerita">
+                                                    Next
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Image Modal -->
+                    <div class="modal fade" id="newsImageModal" tabindex="-1" aria-labelledby="newsImageModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body gallery-modal">
+                                    <img [src]="selectedImageUrl" class="img-fluid modal-img" alt="Modal Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Tab Pane End -->
+
+                    <!-- Modules Tab Pane Section -->
+                    <div class="tab-pane fade p-2" id="sidebar-modules-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Learning Modules Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Learning Modules Table</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control admin-search"
+                                                placeholder="Search by Title">
+                                            <button type="button" class="btn btn-add d-flex align-items-center"
+                                                data-bs-toggle="modal" data-bs-target="#addModulesModal">
+                                                <i class="fa-solid fa-plus me-1"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-container admin-table-container mt-2">
+                                            <table class="table table-bordered admin-table modules-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Images</th>
+                                                        <th>Modules Title</th>
+                                                        <th>Upload Date</th>
+                                                        <th>Modules Type</th>
+                                                        <th>Description</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let module of learningModuleList; let i = index">
+                                                        <td>{{ i + 1 }}</td>
+                                                        <td class="text-center">
+                                                            <img *ngIf="module?.photos && module.photos.length > 0"
+                                                                [src]="getImageUrl(module.photos[0].data)"
+                                                                class="detail-table-img" alt="Module Image"
+                                                                (click)="setSelectedPhoto(module.photos[0].data, 0)"
+                                                                [attr.data-bs-toggle]="'modal'"
+                                                                [attr.data-bs-target]="'#newsImageModal'">
+                                                        </td>
+                                                        <td>{{ module.title }}</td>
+                                                        <td>{{ module.date | date: 'dd MMM yyyy' }}</td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-primary btn-sm disabled">
+                                                                {{ module.category | titlecase }}
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <div class="long-cell">{{ module.description }}</div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div
+                                                                class="text-center d-flex flex-column align-items-center gap-2">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    (click)="deleteLearningModule(module._id)">
+                                                                    <i class="fa-regular fa-trash-can"></i> Delete
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#editModulesModal"
+                                                                    (click)="setSelectedLearningModule(module)">
+                                                                    <i class="fa-solid fa-ellipsis-vertical"></i> Edit
+                                                                </button>
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="learningModuleList.length === 0">
+                                                        <td colspan="7" class="text-center">No modules found.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div
+                                                class="pagination d-flex justify-content-center align-items-center mt-3 gap-2">
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageLearningModule(currentPageLearningModule- 1)"
+                                                    [disabled]="currentPageLearningModule === 1">
+                                                    Previous
+                                                </button>
+                                                <span>Page</span>
+                                                <input type="number" [(ngModel)]="currentPageInputLearningModule"
+                                                    (keydown.enter)="changePageLearningModule()"
+                                                    (blur)="validatePageInputLearningModule()"
+                                                    class="form-control text-center" style="width: 60px;" min="1"
+                                                    [max]="totalPagesLearningModule">
+                                                <span>of {{ totalPagesLearningModule}}</span>
+                                                <button class="btn btn-light"
+                                                    (click)="goToPageLearningModule(currentPageLearningModule + 1)"
+                                                    [disabled]="currentPageLearningModule === totalPagesLearningModule">
+                                                    Next
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modules Tab Pane End -->
+
+                    <!-- Community Tab Pane Section -->
+                    <div class="tab-pane fade show p-2" id="sidebar-community-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Socializing Spot Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Socializing Spot Gallery</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mt-2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control admin-search"
+                                                placeholder="Search by Users" [(ngModel)]="searchQuery">
+                                            <select class="form-select" [(ngModel)]="selectedSort"
+                                                (change)="sortPosts()">
+                                                <option selected value="">Select Sort</option>
+                                                <option value="latest">Latest</option>
+                                                <option value="mostLiked">Most Liked</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-center mt-2">
+                                        <button type="button" class="btn btn-add d-flex align-items-center"
+                                            data-bs-toggle="modal" data-bs-target="#postAdminModal">
+                                            <i class="fa-solid fa-plus me-1"></i> Post
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div *ngFor="let post of filteredPosts()" class="col-6 col-md-4 mt-2">
+                                        <div class="post-card shadow-lg" data-bs-toggle="modal"
+                                            data-bs-target="#postModal" (click)="setSelectedPost(post)">
+                                            <div class="post-items">
+                                                <div class="position-absolute top-0 end-0 m-2 px-2 shadow-lg">
+                                                    <div class="d-flex align-items-center">
+                                                        <img [src]="getProfilePic(post.username)"
+                                                            class="rounded-circle bg-white me-2 post-profile"
+                                                            alt="{{ post.username }} Image">
+                                                        <p class="post-users m-0">{{ post.username }}</p>
+                                                    </div>
+                                                </div>
+                                                <img *ngIf="post?.photos && post.photos.length > 0"
+                                                    [src]="getImageUrl(post.photos[0].data)" class="post-img"
+                                                    alt="Post Image" (click)="setSelectedPost(post)"
+                                                    [attr.data-bs-toggle]="'modal'"
+                                                    [attr.data-bs-target]="'#postModal'">
+                                                <div class="post-intro">
+                                                    <p class="pt-2 title-clamp2 post-caption-card">{{ post.description
+                                                        }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Community Tab Pane End -->
+
+                    <!-- Quiz Tab Pane -->
+                    <div class="tab-pane fade show p-2" id="sidebar-quiz-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Quiz Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body" *ngIf="quizTitle || questions.length">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Quiz Forms</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label for="formControlQuiz" class="form-label">Quiz Title</label>
+                                            <input type="text" class="form-control" id="formControlQuiz"
+                                                [(ngModel)]="quizTitle" placeholder="Input Quiz Title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="formControlOption" class="form-label">Saving Option</label>
+                                        <div class="d-flex justify-content-center align-items-center mb-1">
+                                            <button class="btn btn-danger me-2 w-50" (click)="resetQuiz()"><i
+                                                    class="fa-solid fa-arrows-rotate"></i> Reset</button>
+                                            <button class="btn btn-success w-50" (click)="saveQuiz()"><i
+                                                    class="fa-solid fa-floppy-disk"></i> Save</button>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12 text-center">
+                                            <button class="btn btn-primary" (click)="addQuestion()"><i
+                                                    class="fa-solid fa-plus"></i> Add Question</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4" *ngFor="let question of questions; let i = index">
+                                    <div class="col-1">
+                                        <p><span class="question-number">No.</span>{{ i + 1 }}</p>
+                                    </div>
+                                    <div class="col-11">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label">Question</label>
+                                                    <textarea class="form-control" [(ngModel)]="question.text"
+                                                        rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-md-6 mt-2"
+                                                        *ngFor="let option of question.options; let j = index">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">{{ option.label }}.</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="option.text">
+                                                            <div class="input-group-text question-selection">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="answer{{ i }}"
+                                                                    (change)="setCorrectAnswer(i, option.label)">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body" *ngIf="!quizTitle && questions.length === 0">
+                                <p class="text-center">No quiz available.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Quiz Tab Pane End -->
+
+                    <!-- Calendar Tab Pane Section -->
+                    <div class="tab-pane fade show p-2" id="sidebar-calendar-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Calendar Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Event Calendar</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- Calendar -->
+                                        <div id="calendar"></div>
+                                    </div>
+                                    <div class="col-md-12">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- EvoCalendar -->
+                                                <div id="event-calendar"></div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <!-- Form untuk menambah event -->
+                                                    <div class="col-md-6">
+                                                        <div class="card mt-4">
+                                                            <div class="card-header">Add Event</div>
+                                                            <div class="card-body">
+                                                                <form (submit)="addEvent($event)">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Event Name</label>
+                                                                        <input type="text" class="form-control"
+                                                                            [(ngModel)]="newEvent.name" name="eventName"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Event Note</label>
+                                                                        <input type="text" class="form-control"
+                                                                            [(ngModel)]="newEvent.note"
+                                                                            name="eventNote">
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">Start
+                                                                                    Date</label>
+                                                                                <input type="date" class="form-control"
+                                                                                    [(ngModel)]="newEvent.startDate"
+                                                                                    name="startDate" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">End
+                                                                                    Date</label>
+                                                                                <input type="date" class="form-control"
+                                                                                    [(ngModel)]="newEvent.endDate"
+                                                                                    name="endDate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary">Add
+                                                                        Event</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- List Event -->
+                                                    <div class="col-md-6">
+                                                        <div class="card mt-4">
+                                                            <div class="card-header text-center fw-bold">📅 Event List
+                                                            </div>
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item d-flex flex-column"
+                                                                    *ngFor="let event of eventList; let i = index">
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center">
+                                                                        <strong class="text-primary">{{ event.name
+                                                                            }}</strong>
+                                                                        <button class="btn btn-danger btn-sm"
+                                                                            (click)="deleteEvent(i, event.id)">
+                                                                            <i class="fa-solid fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="text-muted">
+                                                                        🗓️ {{ event.startDate | date: 'dd-MM-yyyy' }} -
+                                                                        {{ event.endDate ? (event.endDate | date:
+                                                                        'dd-MM-yyyy') : (event.startDate | date:
+                                                                        'dd-MM-yyyy') }}
+                                                                    </div>
+                                                                    <p class="mt-2 text-secondary" *ngIf="event.note">📝
+                                                                        {{ event.note }}</p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Calendar Tab Pane End -->
+
+                    <!-- Reports Tab Pane Section -->
+                    <div class="tab-pane fade show p-2" id="sidebar-reports-tab-pane">
+                        <div class="d-flex justify-content-between align-content-center pe-4 mt-4">
+                            <div>
+                                <p class="tab-title mt-1 head-tab ms-3">Reports Tab</p>
+                            </div>
+                            <div class="admin-point">
+                                <button class="nav-link d-flex">
+                                    <img class="rounded-circle bg-white" src="../../assets/Images/logoTahura.png"
+                                        alt="Admin" width="30" height="30">
+                                    <p class="ms-2 head-title">Admin</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        <p class="card-title align-items-center">Reports Table</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control admin-search"
+                                                placeholder="Search by reported" aria-label="Search">
+                                            <!-- <button type="submit" class="btn btn-search">
+                                            <i class="fa fa-search"></i>
+                                        </button> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="table-container admin-table-container mt-2">
+                                            <table class="table table-bordered admin-table reports-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Profile</th>
+                                                        <th>Reported By</th>
+                                                        <th>Messages</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let report of reports; let i = index">
+                                                        <td>{{ i + 1 }}</td>
+                                                        <td class="text-center">
+                                                            <img [src]="getProfilePic(report.username)"
+                                                                        class="profile-table-img"
+                                                                        alt="{{ report.username }} Image">
+                                                        </td>
+                                                        <td>{{ report.username }}</td>
+                                                        <td>
+                                                            <div class="long-cell">
+                                                                {{ report.description }}
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-danger"
+                                                                (click)="deleteReport(report._id)">
+                                                                <i class="fa-regular fa-trash-can"></i> Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr *ngIf="reports.length === 0">
+                                                        <td colspan="5" class="text-center">No reports available.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Reports Tab Pane End -->
+
+                </div>
+
+                <!-- MODAL SECTION -->
+
+                <!-- Add Users Modal Section -->
+                <div class="modal fade" id="addUsersModal" tabindex="-1" aria-labelledby="addUsersModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Add Users</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="text-center">
+                                    <img [src]="imagePreview || '../../assets/Images/logoTahura.png'"
+                                        class="preview-modal-img">
+                                </div>
+
+                                <!-- Form -->
+                                <form (submit)="submitUser()">
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">Profile image input</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1" accept="image/*"
+                                            (change)="onFileChange($event)">
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username"
+                                            placeholder="Enter username" [(ngModel)]="userData.username"
+                                            name="username">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter email"
+                                            [(ngModel)]="userData.email" name="email">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password"
+                                            placeholder="Enter password" [(ngModel)]="userData.password"
+                                            name="password">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Users Modal End -->
+
+                <!-- Edit Users Modal Section -->
+                <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Edit Users</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="text-center">
+                                    <img [src]="imagePreview || (selectedUsers.photos && selectedUsers.photos.length > 0 && selectedUsers.photos[0]?.data && selectedUsers.photos[0]?.contentType !== ''  
+                                    ? getImageUrl(selectedUsers.photos[0].data)  
+                                    : getErrorImageUrl())" class="preview-modal-img">
+                                </div>
+
+                                <!-- Form -->
+                                <form (submit)="editUser()">
+                                    <div class="form-group mt-2">
+                                        <label for="profileImage" class="mb-2">Profile Image Changes</label>
+                                        <input type="file" class="form-control" id="profileImage" accept="image/*"
+                                            (change)="onFileChange($event)">
+                                        <small class="form-text text-muted">Image must be in .jpg, .jpeg, .png
+                                            format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username"
+                                            [(ngModel)]="selectedUsers.username" name="username"
+                                            placeholder="Enter username">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email"
+                                            [(ngModel)]="selectedUsers.email" name="email" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password"
+                                            [(ngModel)]="selectedUsers.password" name="password"
+                                            placeholder="Enter password">
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="editUser()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Add Flora Modal Section -->
+                <div class="modal fade" id="addFloraModal" tabindex="-1" aria-labelledby="addFloraModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Add Flora</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center">
+                                            <div class="carousel slide" id="addImageFloraCarousel">
+                                                <div class="carousel-inner">
+                                                    <div *ngIf="selectedImagesBase64.length > 0; else defaultImages">
+                                                        <div *ngFor="let img of selectedImagesBase64; let i = index"
+                                                            class="carousel-item" [ngClass]="{ 'active': i === 0 }">
+                                                            <img [src]="img" class="preview-modal-img" alt="Flora">
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #defaultImages>
+                                                        <div class="carousel-item active">
+                                                            <img src="../../assets/Images/flora1.jpg"
+                                                                class="preview-modal-img" alt="Flora">
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="../../assets/Images/flora2.jpg"
+                                                                class="preview-modal-img" alt="Flora">
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="../../assets/Images/flora3.jpg"
+                                                                class="preview-modal-img" alt="Flora">
+                                                        </div>
+                                                    </ng-template>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#addImageFloraCarousel" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#addImageFloraCarousel" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let img of selectedImages; let i = index">
+                                                    <th scope="row">{{ i + 1 }}</th>
+                                                    <td>{{ img.name }}</td>
+                                                    <td>
+                                                        <button class="btn btn-danger"
+                                                            (click)="removeImage(i)">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Form -->
+                                <form>
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">Flora Image Input</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1"
+                                            (change)="onFileChange($event)" accept="image/*" multiple>
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter name"
+                                            [(ngModel)]="floraData.name" name="name">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="ilmiah">Ilmiah</label>
+                                        <input type="text" class="form-control" id="ilmiah" placeholder="Enter ilmiah"
+                                            [(ngModel)]="floraData.nameIlmiah" name="nameIlmiah">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" placeholder="Enter description"
+                                            [(ngModel)]="floraData.description" name="description"></textarea>
+                                    </div>
+                                </form>
+
+                                <!-- Characteristic Accordion -->
+                                <div class="accordion mt-2" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Characteristic
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kategori</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.category" name="category">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Bentuk</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.bentuk" name="bentuk">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Akar</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.akar" name="akar">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Daun</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.daun" name="daun">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Tipe Biji</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.tipeBiji" name="tipeBiji">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Lainnya</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.lainnya" name="lainnya">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kulit Kayu</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.kulitKayu" name="kulitKayu">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Ciri Khusus</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.ciriKhusus" name="ciriKhusus">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Bunga</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.bunga" name="bunga">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Buah</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.buah" name="buah">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kegunaan</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="floraData.kegunaan" name="kegunaan">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="submitFlora()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Flora Modal Section -->
+
+                <!-- Edit Flora Modal Section -->
+                <div class="modal fade" id="editFloraModal" tabindex="-1" aria-labelledby="editFloraModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Edit Flora</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center">
+                                            <div class="carousel slide" id="editImageFloraCarousel">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item"
+                                                        *ngFor="let photo of selectedFlora?.photos; let j = index"
+                                                        [ngClass]="{'active': j === 0}">
+                                                        <img [src]="getImageUrl(photo.data)" class="preview-modal-img"
+                                                            alt="Flora Image">
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#editImageFloraCarousel" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#editImageFloraCarousel" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let photo of selectedFlora?.photos; let i = index">
+                                                    <th scope="row">{{ i + 1 }}</th>
+                                                    <td>Photo {{ i + 1 }}</td>
+                                                    <td>
+                                                        <button class="btn btn-danger"
+                                                            (click)="deleteImageFlora(i)">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Form -->
+                                <form>
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">Flora Image Input</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1"
+                                            (change)="onFileChange($event)" accept="image/*" multiple>
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            [(ngModel)]="selectedFlora.name">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="ilmiah">Scientific Name</label>
+                                        <input type="text" class="form-control" id="ilmiah" name="nameIlmiah"
+                                            [(ngModel)]="selectedFlora.nameIlmiah">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" name="description"
+                                            [(ngModel)]="selectedFlora.description"></textarea>
+                                    </div>
+                                </form>
+
+                                <!-- Charateristic Section -->
+                                <div class="accordion mt-2" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Characteristic
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <form (ngSubmit)="editFlora()">
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kategori</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.category" name="category">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Bentuk</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.bentuk" name="bentuk">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Akar</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.akar" name="akar">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Daun</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.daun" name="daun">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Tipe Biji</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.tipeBiji" name="tipeBiji">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Lainnya</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.lainnya" name="lainnya">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kulit Kayu</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.kulitKayu" name="kulitKayu">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Ciri Khusus</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.ciriKhusus"
+                                                                name="ciriKhusus">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Bunga</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.bunga" name="bunga">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Buah</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.buah" name="buah">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kegunaan</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFlora.kegunaan" name="kegunaan">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="editFlora()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit Flora Modal End Section -->
+
+                <!-- Add Fauna Modal Section -->
+                <div class="modal fade" id="addFaunaModal" tabindex="-1" aria-labelledby="addFaunaModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Add Fauna</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center">
+                                            <div class="carousel slide" id="addImageFaunaCarousel">
+                                                <div class="carousel-inner">
+                                                    <div *ngIf="selectedImagesBase64.length > 0; else defaultImages">
+                                                        <div *ngFor="let img of selectedImagesBase64; let i = index"
+                                                            class="carousel-item" [ngClass]="{ 'active': i === 0 }">
+                                                            <img [src]="img" class="preview-modal-img" alt="Flora">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#addImageFaunaCarousel" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#addImageFaunaCarousel" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let image of selectedImages; let i = index">
+                                                    <th scope="row">{{ i + 1 }}</th>
+                                                    <td>{{ image.name }}</td>
+                                                    <td>
+                                                        <button class="btn btn-danger"
+                                                            (click)="removeImage(i)">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Form -->
+                                <form>
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">Fauna Image Input</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1"
+                                            (change)="onFileChange($event)" accept="image/*" multiple>
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter name"
+                                            [(ngModel)]="faunaData.name" name="name">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="ilmiah">Ilmiah</label>
+                                        <input type="text" class="form-control" id="ilmiah" placeholder="Enter ilmiah"
+                                            [(ngModel)]="faunaData.nameIlmiah" name="ilmiah">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea type="text" class="form-control" id="description"
+                                            placeholder="Enter description" [(ngModel)]="faunaData.description"
+                                            name="description"></textarea>
+                                    </div>
+                                </form>
+
+                                <div class="accordion mt-2" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Characteristic
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kategori</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.category" name="category">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Habitat</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.habitat" name="habitat">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Panjang</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.panjang" name="panjang">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Lebar</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.lebar" name="lebar">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Warna</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.warna" name="warna">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Makanan</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.makanan" name="makanan">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Reproduksi</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.reproduksi" name="reproduksi">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Adaptasi</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.adaptasi" name="adaptasi">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Gerakan</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.gerakan" name="gerakan">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Alat Gerak</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.alatGerak" name="alatGerak">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Bentuk
+                                                                Tubuh</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="faunaData.bentukTubuh" name="bentukTubuh">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="submitFauna()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Fauna Modal Section -->
+                <div class="modal fade" id="editFaunaModal" tabindex="-1" aria-labelledby="editFaunaModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Edit Fauna</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center">
+                                            <div class="carousel slide" id="editImageFaunaCarousel">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item"
+                                                        *ngFor="let photo of selectedFauna?.photos; let j = index"
+                                                        [ngClass]="{'active': j === 0}">
+                                                        <img [src]="getImageUrl(photo.data)" class="preview-modal-img"
+                                                            alt="Fauna Image">
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button"
+                                                    data-bs-target="#editImageFaunaCarousel" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button"
+                                                    data-bs-target="#editImageFaunaCarousel" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"
+                                                        style="filter: invert(1);"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let photo of selectedFauna?.photos; let i = index">
+                                                    <th scope="row">{{ i + 1 }}</th>
+                                                    <td>Photo {{ i + 1 }}</td>
+                                                    <td>
+                                                        <button class="btn btn-danger"
+                                                            (click)="deleteImageFauna(i)">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Form -->
+                                <form>
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">Fauna image changes</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1"
+                                            (change)="onFileChange($event)" accept="image/*">
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name"
+                                            [(ngModel)]="selectedFauna.name" name="name">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="ilmiah">Ilmiah</label>
+                                        <input type="text" class="form-control" id="ilmiah"
+                                            [(ngModel)]="selectedFauna.nameIlmiah" name="ilmiah">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea type="text" class="form-control" id="description"
+                                            [(ngModel)]="selectedFauna.description" name="description"></textarea>
+                                    </div>
+                                </form>
+
+                                <div class="accordion mt-2" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Characteristic
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Kategori</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.category" name="kategori">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Habitat</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.habitat" name="habitat">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Panjang</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.panjang" name="panjang">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Lebar</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.lebar" name="lebar">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Warna</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.warna" name="warna">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Makanan</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.makanan" name="makanan">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Reproduksi</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.reproduksi"
+                                                                name="reproduksi">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Adaptasi</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.adaptasi" name="adaptasi">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Gerakan</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.gerakan" name="gerakan">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Alat Gerak</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.alatGerak" name="alatGerak">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text fauna-span">Bentuk
+                                                                Tubuh</span>
+                                                            <input type="text" class="form-control"
+                                                                [(ngModel)]="selectedFauna.bentukTubuh"
+                                                                name="bentukTubuh">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="editFauna()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit Fauna Modal Section -->
+
+
+                <!-- Add News Modal Section -->
+                <div class="modal fade" id="addNewsModal" tabindex="-1" aria-labelledby="addNewsModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Add News</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="text-center">
+                                    <img [src]="imagePreview || '../../assets/Images/logoTahura.png'"
+                                        class="preview-modal-img">
+                                </div>
+
+                                <!-- Form -->
+                                <form>
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">News Image Input</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1"
+                                            (change)="onFileChange($event)" accept="image/*" multiple>
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="newsTitle">News title</label>
+                                        <input type="text" class="form-control" id="newsTitle"
+                                            placeholder="Enter News title" [(ngModel)]="beritaData.title" name="title">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="uploadDate">Upload date</label>
+                                        <input type="date" class="form-control" id="uploadDate"
+                                            [(ngModel)]="beritaData.date" name="uploadDate">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" placeholder="Enter description"
+                                            [(ngModel)]="beritaData.description" name="description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="submitBerita()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add News Modal End -->
+
+                <!-- Edit News Modal Section -->
+                <div class="modal fade" id="editNewsModal" tabindex="-1" aria-labelledby="editNewsModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Edit News</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="text-center">
+                                    <img [src]="imagePreview || (selectedBerita?.photos?.[0]?.data && selectedBerita?.photos?.[0]?.contentType ? getImageUrl(selectedBerita.photos[0].data) : getErrorImageUrl())"
+                                        class="preview-modal-img" alt="User Image">
+                                </div>
+
+                                <!-- Form -->
+                                <form>
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">News image changes</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1" accept="image/*"
+                                            (change)="onFileChange($event)">
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="news-title">News title</label>
+                                        <input type="text" class="form-control" id="news-title"
+                                            placeholder="Enter News title" [(ngModel)]="selectedBerita.title"
+                                            name="title">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="upload-date">Upload date</label>
+                                        <input type="date" class="form-control" id="upload-date"
+                                            [(ngModel)]="selectedBerita.date" name="date">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" placeholder="Enter description"
+                                            [(ngModel)]="selectedBerita.description" name="description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="editBerita()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit News Modal End -->
+
+                <!-- Add Modules Modal -->
+                <div class="modal fade" id="addModulesModal" tabindex="-1" aria-labelledby="addModulesModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white" id="addModulesModalLabel">Add Learning Module
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="text-center">
+                                    <img [src]="imagePreview || '../../assets/Images/logoTahura.png'"
+                                        class="preview-modal-img">
+                                </div>
+
+                                <!-- Form -->
+                                <form (ngSubmit)="submitLearningModule()">
+                                    <div class="form-group mt-2">
+                                        <label for="moduleImage">Module Image</label>
+                                        <input type="file" class="form-control" id="moduleImage"
+                                            (change)="onFileChange($event)" accept="image/*">
+                                        <small class="text-muted">Allowed formats: .jpg, .jpeg, .png</small>
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="videoUrl">Video URL</label>
+                                        <input type="url" class="form-control" id="videoUrl"
+                                            placeholder="Enter video URL" [(ngModel)]="learningModuleData.url"
+                                            name="videoUrl">
+                                        <small class="text-muted">Optional if content type is "Video".</small>
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="moduleTitle">Module Title</label>
+                                        <input type="text" class="form-control" id="moduleTitle"
+                                            placeholder="Enter Module Title" [(ngModel)]="learningModuleData.title"
+                                            name="title" required>
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="category">Content Type</label>
+                                        <select class="form-select" id="category"
+                                            [(ngModel)]="learningModuleData.category" name="category" required>
+                                            <option selected disabled>Select Type</option>
+                                            <option value="article">Article</option>
+                                            <option value="video">Video</option>
+                                            <option value="infographic">Infographic</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="date">Upload Date</label>
+                                        <input type="date" class="form-control" id="date"
+                                            [(ngModel)]="learningModuleData.date" name="date" required>
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" rows="3"
+                                            placeholder="Enter description" [(ngModel)]="learningModuleData.description"
+                                            name="description" required></textarea>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Add Modules Modal -->
+
+
+                <!-- Edit Modules Modal Section -->
+                <div class="modal fade" id="editModulesModal" tabindex="-1" aria-labelledby="editModulesModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Edit Modules</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="text-center">
+                                    <a *ngIf="selectedLearningModule.url" [href]="selectedLearningModule.url"
+                                        target="_blank">
+                                        <img [src]="imagePreview || (selectedLearningModule?.photos?.[0]?.data && selectedLearningModule?.photos?.[0]?.contentType ? getImageUrl(selectedLearningModule.photos[0].data) : getErrorImageUrl())"
+                                            class="preview-modal-img" alt="Learning Module Image">
+                                    </a>
+                                </div>
+
+                                <!-- Form -->
+                                <form #editModuleForm="ngForm">
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">Modules image changes</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1" accept="image/*"
+                                            (change)="onFileChange($event)">
+                                        <small id="fileHelp" class="form-text text-muted">Image must be in .jpg, .jpeg,
+                                            .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="videoUrl" class="form-label">Video URL</label>
+                                        <input type="url" class="form-control" id="videoUrl" name="url"
+                                            placeholder="Enter video URL" [(ngModel)]="selectedLearningModule.url"
+                                            required>
+                                        <small class="text-muted">Optional if content type is "Video".</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="module-title">Module title</label>
+                                        <input type="text" class="form-control" id="module-title" name="title"
+                                            placeholder="Enter Module title" [(ngModel)]="selectedLearningModule.title"
+                                            required>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="upload-date">Upload date</label>
+                                        <input type="date" class="form-control" id="upload-date" name="date"
+                                            placeholder="Enter Upload date" [(ngModel)]="selectedLearningModule.date"
+                                            required>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="contentType" class="form-label">Select Content Type</label>
+                                        <select class="form-select" id="contentType" name="category" required
+                                            [(ngModel)]="selectedLearningModule.category">
+                                            <option selected disabled>Select Type</option>
+                                            <option value="article">Article</option>
+                                            <option value="video">Video</option>
+                                            <option value="infographic">Infographic</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" id="description" name="description"
+                                            placeholder="Enter description"
+                                            [(ngModel)]="selectedLearningModule.description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"
+                                    (click)="editLearningModule()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post Community Admin Modal Section -->
+                <div class="modal fade" id="postAdminModal" tabindex="-1" aria-labelledby="postAdminModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content border-post-modal">
+                            <div class="modal-header bg-success">
+                                <h1 class="modal-title fs-5 text-white">Submit Post</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Preview -->
+                                <div class="text-center">
+                                    <img [src]="imagePreview || '../../assets/Images/fauna3.jpg'"
+                                        class="preview-modal-img">
+                                </div>
+
+                                <!-- Form -->
+                                <form (submit)="submitPost()">
+                                    <div class="form-group mt-2">
+                                        <label for="postImage" class="mb-2">Input Your Picture</label>
+                                        <input type="file" class="form-control" id="postImage" accept="image/*"
+                                            (change)="onFileChange($event)">
+                                        <small id="fileHelp" class="form-text text-muted">
+                                            Image must be in .jpg, .jpeg, .png format.
+                                        </small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="postCaption">Caption</label>
+                                        <textarea class="form-control" id="postCaption" placeholder="Enter Caption"
+                                            [(ngModel)]="postData.description" name="description" rows="3" required></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Community Admin Modal Section End -->
+
+                <!-- Post Modal Section -->
+                <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content border-post-modal">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-between">
+                                        <div>
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link active" id="preview-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#preview-tab-pane"
+                                                        type="button" role="tab" aria-controls="preview-tab-pane"
+                                                        aria-selected="true">Preview</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="post-manage-tab" data-bs-toggle="tab"
+                                                        data-bs-target="#post-manage-tab-pane" type="button" role="tab"
+                                                        aria-controls="post-manage-tab-pane"
+                                                        aria-selected="false">Settings</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <!-- Preview Tab -->
+                                    <div class="tab-pane fade show active" id="preview-tab-pane" role="tabpanel"
+                                        aria-labelledby="preview-tab" tabindex="0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img [src]="imagePreview || (selectedPost?.photos?.[0]?.data && selectedPost?.photos?.[0]?.contentType ? getImageUrl(selectedPost.photos[0].data) : getErrorImageUrl())"
+                                                    class="post-preview-img" alt="Post Image">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="post-content">
+                                                    <div class="col-12 pe-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <a class="d-flex align-items-center text-decoration-none"
+                                                                style="color: inherit;">
+                                                                <img [src]="getProfilePic(selectedPost.username)"
+                                                                    class="bg-white me-2 post-preview-profile"
+                                                                    alt="{{ selectedPost.username }} Image">
+                                                                <p class="chat-name ps-1 mb-0">{{selectedPost.username}}
+                                                                </p>
+                                                            </a>
+                                                        </div>
+                                                        <div class="d-flex flex-column flex-grow-1"
+                                                            style="padding-left: 6vh;">
+                                                            <div class="post-preview-caption text-justify">
+                                                                <p>{{selectedPost.description}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 mt-2">
+                                                        <div class="d-flex justify-content-end">
+                                                            <p class="post-date pt-3 me-4"><i
+                                                                    class="fa-regular fa-calendar"></i> 23 March 2025
+                                                            </p>
+                                                            <button type="button" class="btn post-button"
+                                                                (click)="onLike(selectedPost?._id, userProfile.username, $event)">
+                                                                <i class="fa-regular fa-thumbs-up"></i> {{
+                                                                selectedPost?.like?.length || 0 }}
+                                                            </button>
+                                                            <button type="button" class="btn post-button"
+                                                                (click)="onDislike(selectedPost?._id, userProfile.username, $event)">
+                                                                <i class="fa-regular fa-thumbs-down"></i> {{
+                                                                selectedPost?.dislike?.length || 0 }}
+                                                            </button>
+                                                            <button type="button" class="btn post-button">
+                                                                <i class="fa-regular fa-comment"></i> {{
+                                                                selectedPost?.comments?.length || 0 }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>Comments</p>
+                                                    </div>
+                                                    <div class="col-md-12 post-comment">
+                                                        <div *ngFor="let comment of selectedPost?.comments">
+                                                            <div class="d-flex align-items-center">
+                                                                <a class="d-flex align-items-center text-decoration-none"
+                                                                    style="color: inherit;">
+                                                                    <img [src]="getProfilePic(comment.username)"
+                                                                        class="bg-white me-2 post-preview-profile"
+                                                                        alt="{{ comment.username }} Image">
+                                                                    <p class="chat-name mb-0">{{ comment.username }}</p>
+                                                                </a>
+                                                            </div>
+                                                            <div class="d-flex flex-column flex-grow-1"
+                                                                style="padding-left: 6vh;">
+                                                                <div class="post-space text-justify">
+                                                                    {{ comment.comment }}
+                                                                </div>
+                                                            </div>
+                                                            <hr class="my-3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <form class="d-flex align-items-center mt-3"
+                                                    (ngSubmit)="onAddComment(selectedPost?._id, userProfile.username, newComment)">
+                                                    <input type="text" class="form-control me-2"
+                                                        placeholder="Write a comment..." [(ngModel)]="newComment"
+                                                        name="commentInput">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="fa-solid fa-paper-plane"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Setings Tab -->
+                                    <div class="tab-pane fade" id="post-manage-tab-pane" role="tabpanel"
+                                        aria-labelledby="post-manage-tab" tabindex="0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="text-center">
+                                                    <img [src]="imagePreview || (selectedPost?.photos?.[0]?.data && selectedPost?.photos?.[0]?.contentType ? getImageUrl(selectedPost.photos[0].data) : getErrorImageUrl())"
+                                                        class="post-preview-img" alt="Post Image">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <form>
+                                                    <div class="form-group mt-2">
+                                                        <label for="exampleInputFile" class="mb-2">Change
+                                                            Picture</label>
+                                                        <input type="file" class="form-control" id="exampleInputFile1"
+                                                            accept="image/*" (change)="onFileChange($event)">
+                                                        <small id="fileHelp" class="form-text text-muted">Image must be
+                                                            in .jpg, .jpeg, .png format.</small>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <label for="post-caption-text">Caption</label>
+                                                        <textarea type="text" class="form-control"
+                                                            id="post-caption-text" placeholder="Enter Caption"
+                                                            [(ngModel)]="selectedPost.description"
+                                                            name="caption" rows="3"></textarea>
+                                                    </div>
+                                                </form>
+                                                <div class="d-flex justify-content-end mt-4">
+                                                    <button type="submit" class="btn btn-danger me-2"
+                                                        (click)="deletePost(selectedPost._id)"><i
+                                                            class="fa-solid fa-delete-left"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        (click)="editPost()"><i class="fa-solid fa-floppy-disk"></i>
+                                                        Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Modal End -->
+
+
+
+                <!-- MODAL END -->
+
+            </div>
+        </div>
+    </div>
+
+</div>

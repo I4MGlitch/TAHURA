@@ -1,19 +1,20 @@
 /* BERITA DETAIL PAGE */
 
+/* .berita-title{
+    font-weight: 600;
+    font-size: 34px;
+} */
+
 .berita-detail-content{
-    margin-top: 20vh;
-    height: 290vh;
+    padding-top: 25vh;
+    height: auto;
 }
 
 .berita-detail-image{
     width: 100%;
-    height: 60vh;
+    max-height: 60vh;
 }
 
-.artikel-lain{
-    width: 100%;
-    height: 30vh;
-}
 
 /* BERITA DETAIL PAGE END*/
 

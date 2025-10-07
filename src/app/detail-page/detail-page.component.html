@@ -1,57 +1,84 @@
-<body>
-    <div class="tahuraBackground">
-        <div class="detail">
-            <div class="container">
-                <div class="row pt-3">
-                    <div class="col-md-4">
-                        <div class="swiper-container detail-container detailSwiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora1.jpg"
-                                        alt="Flora 1"></div>
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora2.jpg"
-                                        alt="Flora 2"></div>
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora1.jpg"
-                                        alt="Flora 3"></div>
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora1.jpg"
-                                        alt="Flora 4"></div>
-                            </div>
-                            <!-- Add Pagination -->
-                            <!-- <div class="swiper-pagination"></div> -->
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                        </div>
-
-                        <!-- Thumbs Swiper -->
-                        <div
-                            class="swiper-container detail-container swiper-container-thumbs detail-thumbs mySwiperThumbs">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora1.jpg"
-                                        alt="Flora 1"></div>
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora1.jpg"
-                                        alt="Flora 2"></div>
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora1.jpg"
-                                        alt="Flora 3"></div>
-                                <div class="swiper-slide detail-slide"><img src="../../assets/Images/flora1.jpg"
-                                        alt="Flora 4"></div>
-                            </div>
-                        </div>
-                        <!-- <img src="assets/Rectangle 4.png" class="img-fluid" alt="Flower Image"> -->
-                    </div>
-                    <div class="col-md-8 text-container">
-                        <h2 class="pt-5">BUNGA</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat
-                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <a href="#" class="button mb-3">BACK</a>
-                </div>
+<div class="tahuraBackground">
+  <div class="container detail-page-content" style="padding-bottom: 50vh;">
+    <div style="background-color: white; padding: 2vh; border-radius: 5px;">
+      <div class="row">
+        <div class="col-md-6">
+  
+  
+          <div class="swiper-container detail-container detailSwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide detail-slide" *ngFor="let photo of (flora?.photos || fauna?.photos); let i = index">
+                <img [src]="getImageUrl(photo.data)" alt="Detail Image"
+                    (error)="handleImageError($event, photo)" />
+              </div>
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+  
+          
+          <div class="swiper-container detail-container swiper-container-thumbs detail-thumbs mySwiperThumbs">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide detail-slide2" *ngFor="let photo of (flora?.photos || fauna?.photos); let i = index" (click)="updateMainPhoto(i)">
+                <img [src]="getImageUrl(photo.data)" alt="Detail Thumbnail" />
+              </div>
+            </div>
+          </div>
+  
+      </div>
+  
+      <div class="col-md-6 text-container text-justify">
+        <h2 class="pt-5">{{ flora?.name || fauna?.name }} <span style="font-style: italic;">({{ flora?.nameIlmiah || fauna?.nameIlmiah }})</span></h2>
+        <h4>KARAKTERISTIK</h4>
+        <div *ngIf="fauna">
+          <ul>
+            <li>Kategori <span style="margin-left: 50px;">:</span> {{ fauna?.category }}</li>
+            <li>Habitat <span style="margin-left: 57px;">:</span> {{ fauna?.habitat }}</li>
+            <li>Panjang <span style="margin-left: 52px;">:</span> {{ fauna?.panjang }}</li>
+            <li>Lebar <span style="margin-left: 71px;">:</span> {{ fauna?.lebar }}</li>
+            <li>Warna <span style="margin-left: 62px;">:</span> {{ fauna?.warna }}</li>
+            <li>Makanan <span style="margin-left: 43px;">:</span> {{ fauna?.makanan }}</li>
+            <li>Reproduksi <span style="margin-left: 26px;">:</span> {{ fauna?.reproduksi }}</li>
+            <li>Adaptasi <span style="margin-left: 45px;">:</span> {{ fauna?.adaptasi }}</li>
+            <li>Gerakan <span style="margin-left: 50px;">:</span> {{ fauna?.gerakan }}</li>
+            <li>Alat Gerak <span style="margin-left: 31px;">:</span> {{ fauna?.alatGerak }}</li>
+            <li>Bentuk Tubuh <span style="margin-left: 5px;">:</span> {{ fauna?.bentukTubuh }}</li>
+          </ul>
         </div>
+        <div *ngIf="flora">
+          <ul>
+            <li>Kategori <span style="margin-left: 24px;">:</span> {{ flora?.category }}</li>
+            <li>Bentuk <span style="margin-left: 34px;">:</span> {{ flora?.bentuk }}</li>
+            <li>Akar <span style="margin-left: 53px;">:</span> {{ flora?.akar }}</li>
+            <li>Daun <span style="margin-left: 48px;">:</span> {{ flora?.daun }}</li>
+            <li>Tipe Biji <span style="margin-left: 26px;">:</span> {{ flora?.tipeBiji }}</li>
+            <li>Lainnya <span style="margin-left: 29px;">:</span> {{ flora?.lainnya }}</li>
+            <li>Kulit Kayu <span style="margin-left: 10px;">:</span> {{ flora?.kulitKayu }}</li>
+            <li>Ciri Khusus <span style="margin-left: 1px;">:</span> {{ flora?.ciriKhusus }}</li>
+            <li>Bunga <span style="margin-left: 39px;">:</span> {{ flora?.bunga }}</li>
+            <li>Buah <span style="margin-left: 49px;">:</span> {{ flora?.buah }}</li>
+            <li>Kegunaan <span style="margin-left: 10px;">:</span> {{ flora?.kegunaan }}</li>
+          </ul>
+        </div>
+        <p>{{ flora?.description || fauna?.description }}</p>
+      </div>
+    </div>
+  
+    <div class="row text-center">
+      <a [routerLink]="['/']" class="button mb-3">BACK</a>
     </div>
 
-</body>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+  <button class="btn btn-success chatbot-float">
+      <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+      <div class="text-start">
+        <div class="fw-bold">TAHURA</div>
+        <div>CHATBOT</div>
+      </div>
+  </button>
+</a>

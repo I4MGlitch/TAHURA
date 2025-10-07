@@ -1,0 +1,361 @@
+<div class="socializing-spot-background">
+    <div class="container socializing-spot-content">
+        <div class="row pt-4">
+            <div class="col-md-12 text-center">
+                <i class="fa-solid fa-camera-retro socializing-spot-icon"></i>
+            </div>
+            <div class="col-md-12">
+                <div class="text-center mt-4">
+                    <p class="socializing-spot-title">Socializing Spot</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mt-2">
+                <div class="d-flex align-items-center gap-2">
+                    <input type="text" class="form-control admin-search" placeholder="Search by Users"
+                        [(ngModel)]="searchQuery" />
+                    <select class="form-select" [(ngModel)]="selectedSort">
+                        <option value="">Select Sort</option>
+                        <option value="latest">Latest</option>
+                        <option value="mostLiked">Most Liked</option>
+                        <option value="mypost">My Post</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 text-start mt-2">
+                <button type="button" class="btn btn-add me-2" [attr.disabled]="!isLoggedIn ? true : null"
+                    [ngClass]="{'disabled': !isLoggedIn}" data-bs-toggle="modal" data-bs-target="#postingModal">
+                    <i class="fa-solid fa-plus me-1"></i> Post
+                </button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div *ngFor="let post of getfilteredPosts()" class="col-12 col-md-4 mt-2">
+                <div class="post-card shadow-lg" [attr.data-bs-toggle]="'modal'"
+                    [attr.data-bs-target]="post.username === username ? '#myPostModal' : '#postModal'"
+                    (click)="setSelectedPost(post)">
+
+                    <div class="post-items">
+                        <div class="position-absolute top-0 end-0 m-2 px-2 shadow-lg">
+                            <div class="d-flex align-items-center">
+                                <img [src]="getProfilePic(post.username)"
+                                    class="rounded-circle bg-white me-2 post-profile" alt="{{ post.username }} Image">
+                                <p class="post-users m-0">{{ post.username }}</p>
+                            </div>
+                        </div>
+                        <img *ngIf="post?.photos?.length > 0" [src]="getImageUrl(post.photos[0].data)" class="post-img"
+                            alt="Post Image">
+                        <div class="post-intro">
+                            <p class="pt-2 title-clamp2 post-caption-card">{{ post.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Posting Modal Section -->
+<div class="modal fade" id="postingModal" tabindex="-1" aria-labelledby="postingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content border-post-modal">
+            <div class="modal-header bg-success">
+                <h1 class="modal-title fs-5 text-white">Submit Post</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Image Preview -->
+                <div class="text-center">
+                    <img [src]="imagePreview || '../../assets/Images/balipostcom_jadi-showcase-di-ktt-g20-2022-hutan-mangrove-bali-bersolek_01.jpg'"
+                        class="preview-modal-img">
+                </div>
+
+                <!-- Form -->
+                <form (submit)="submitPost()">
+                    <div class="form-group mt-2">
+                        <label for="postImage" class="mb-2">Input Your Picture</label>
+                        <input type="file" class="form-control" id="postImage" accept="image/*"
+                            (change)="onFileChange($event)">
+                        <small id="fileHelp" class="form-text text-muted">
+                            Image must be in .jpg, .jpeg, .png format.
+                        </small>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="postCaption">Caption</label>
+                        <textarea class="form-control" id="postCaption" placeholder="Enter Caption"
+                            [(ngModel)]="postData.description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Posting Modal End -->
+<!-- Post Modal Section -->
+<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content border-post-modal">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img [src]="imagePreview || (selectedPost?.photos?.[0]?.data && selectedPost?.photos?.[0]?.contentType ? getImageUrl(selectedPost.photos[0].data) : getErrorImageUrl())"
+                            class="post-preview-img" alt="Post Image">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="post-content">
+                            <div class="col-12 pe-2">
+                                <div class="d-flex align-items-center">
+                                    <a class="d-flex align-items-center text-decoration-none" style="color: inherit;">
+                                        <img [src]="getProfilePic(selectedPost.username)"
+                                            class="bg-white me-2 post-preview-profile"
+                                            alt="{{ selectedPost.username }} Image">
+                                        <p class="chat-name ps-1 mb-0">{{selectedPost.username}}
+                                        </p>
+                                    </a>
+                                </div>
+                                <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                    <div class="post-preview-caption text-justify">
+                                        <p>{{selectedPost.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="d-flex justify-content-end">
+                                    <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 23 March 2025
+                                    </p>
+                                    <button type="button" class="btn post-button"
+                                        (click)="onLike(selectedPost?._id, userProfile.username, $event)">
+                                        <i class="fa-thumbs-up" [ngClass]="{
+         'fa-solid text-primary': selectedPost?.like?.includes(userProfile.username),
+         'fa-regular': !selectedPost?.like?.includes(userProfile.username)
+       }"></i>
+                                        {{ selectedPost?.like?.length || 0 }}
+                                    </button>
+
+                                    <button type="button" class="btn post-button"
+                                        (click)="onDislike(selectedPost?._id, userProfile.username, $event)">
+                                        <i class="fa-thumbs-down" [ngClass]="{
+         'fa-solid text-danger': selectedPost?.dislike?.includes(userProfile.username),
+         'fa-regular': !selectedPost?.dislike?.includes(userProfile.username)
+       }"></i>
+                                        {{ selectedPost?.dislike?.length || 0 }}
+                                    </button>
+
+
+                                    <button type="button" class="btn post-button">
+                                        <i class="fa-regular fa-comment"></i> {{
+                                        selectedPost?.comments?.length || 0 }}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <p>Comments</p>
+                            </div>
+                            <div class="col-md-12 post-comment">
+                                <div *ngFor="let comment of selectedPost?.comments">
+                                    <div class="d-flex align-items-center">
+                                        <a class="d-flex align-items-center text-decoration-none"
+                                            style="color: inherit;">
+                                            <img [src]="getProfilePic(comment.username)"
+                                                class="bg-white me-2 post-preview-profile"
+                                                alt="{{ comment.username }} Image">
+                                            <p class="chat-name mb-0">{{ comment.username }}</p>
+                                        </a>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                        <div class="post-space text-justify">
+                                            {{ comment.comment }}
+                                        </div>
+                                    </div>
+                                    <hr class="my-3">
+                                </div>
+                            </div>
+                        </div>
+                        <form class="d-flex align-items-center mt-3"
+                            (ngSubmit)="onAddComment(selectedPost?._id, userProfile.username, newComment)">
+                            <input type="text" class="form-control me-2" placeholder="Write a comment..."
+                                [(ngModel)]="newComment" name="commentInput">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Post Modal End -->
+
+<!-- My Post Modal Section -->
+<div class="modal fade" id="myPostModal" tabindex="-1" aria-labelledby="myPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content border-post-modal">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-between">
+                        <div>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="preview-tab" data-bs-toggle="tab"
+                                        data-bs-target="#preview-tab-pane" type="button" role="tab"
+                                        aria-controls="preview-tab-pane" aria-selected="true">Preview</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="post-manage-tab" data-bs-toggle="tab"
+                                        data-bs-target="#post-manage-tab-pane" type="button" role="tab"
+                                        aria-controls="post-manage-tab-pane" aria-selected="false">Settings</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <!-- Preview Tab -->
+                    <div class="tab-pane fade show active" id="preview-tab-pane" role="tabpanel"
+                        aria-labelledby="preview-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img [src]="imagePreview || (selectedPost?.photos?.[0]?.data && selectedPost?.photos?.[0]?.contentType ? getImageUrl(selectedPost.photos[0].data) : getErrorImageUrl())"
+                                    class="post-preview-img" alt="Post Image">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="post-content">
+                                    <div class="col-12 pe-2">
+                                        <div class="d-flex align-items-center">
+                                            <a class="d-flex align-items-center text-decoration-none"
+                                                style="color: inherit;">
+                                                <img [src]="getProfilePic(selectedPost.username)"
+                                                    class="bg-white me-2 post-preview-profile"
+                                                    alt="{{ selectedPost.username }} Image">
+                                                <p class="chat-name ps-1 mb-0">{{selectedPost.username}}
+                                                </p>
+                                            </a>
+                                        </div>
+                                        <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                            <div class="post-preview-caption text-justify">
+                                                <p>{{selectedPost.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <div class="d-flex justify-content-end">
+                                            <p class="post-date pt-3 me-4"><i class="fa-regular fa-calendar"></i> 23
+                                                March 2025
+                                            </p>
+                                            <button type="button" class="btn post-button"
+                                                (click)="onLike(selectedPost?._id, userProfile.username, $event)">
+                                                <i class="fa-regular fa-thumbs-up"></i> {{
+                                                selectedPost?.like?.length || 0 }}
+                                            </button>
+                                            <button type="button" class="btn post-button"
+                                                (click)="onDislike(selectedPost?._id, userProfile.username, $event)">
+                                                <i class="fa-regular fa-thumbs-down"></i> {{
+                                                selectedPost?.dislike?.length || 0 }}
+                                            </button>
+                                            <button type="button" class="btn post-button">
+                                                <i class="fa-regular fa-comment"></i> {{
+                                                selectedPost?.comments?.length || 0 }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p>Comments</p>
+                                    </div>
+                                    <div class="col-md-12 post-comment">
+                                        <div *ngFor="let comment of selectedPost?.comments">
+                                            <div class="d-flex align-items-center">
+                                                <a class="d-flex align-items-center text-decoration-none"
+                                                    style="color: inherit;">
+                                                    <img [src]="getProfilePic(comment.username)"
+                                                        class="bg-white me-2 post-preview-profile"
+                                                        alt="{{ comment.username }} Image">
+                                                    <p class="chat-name mb-0">{{ comment.username }}</p>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex flex-column flex-grow-1" style="padding-left: 6vh;">
+                                                <div class="post-space text-justify">
+                                                    {{ comment.comment }}
+                                                </div>
+                                            </div>
+                                            <hr class="my-3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="d-flex align-items-center mt-3"
+                                    (ngSubmit)="onAddComment(selectedPost?._id, userProfile.username, newComment)">
+                                    <input type="text" class="form-control me-2" placeholder="Write a comment..."
+                                        [(ngModel)]="newComment" name="commentInput">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Setings Tab -->
+                    <div class="tab-pane fade" id="post-manage-tab-pane" role="tabpanel"
+                        aria-labelledby="post-manage-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center">
+                                    <img [src]="imagePreview || (selectedPost?.photos?.[0]?.data && selectedPost?.photos?.[0]?.contentType ? getImageUrl(selectedPost.photos[0].data) : getErrorImageUrl())"
+                                        class="post-preview-img" alt="Post Image">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <form>
+                                    <div class="form-group mt-2">
+                                        <label for="exampleInputFile" class="mb-2">Change
+                                            Picture</label>
+                                        <input type="file" class="form-control" id="exampleInputFile1" accept="image/*"
+                                            (change)="onFileChange($event)">
+                                        <small id="fileHelp" class="form-text text-muted">Image must be
+                                            in .jpg, .jpeg, .png format.</small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="post-caption-text">Caption</label>
+                                        <textarea type="text" class="form-control" id="post-caption-text"
+                                            placeholder="Enter Caption" [(ngModel)]="selectedPost.description"
+                                            name="caption" rows="3"></textarea>
+                                    </div>
+                                </form>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit" class="btn btn-danger me-2"
+                                        (click)="deletePost(selectedPost._id)"><i class="fa-solid fa-delete-left"></i>
+                                        Delete</button>
+                                    <button type="submit" class="btn btn-primary" (click)="editPost()"><i
+                                            class="fa-solid fa-floppy-disk"></i>
+                                        Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- My Post Modal End -->
+
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+    <button class="btn btn-success chatbot-float">
+        <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+        <div class="text-start">
+            <div class="fw-bold">TAHURA</div>
+            <div>CHATBOT</div>
+        </div>
+    </button>
+</a>

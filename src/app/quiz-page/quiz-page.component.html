@@ -1,0 +1,197 @@
+<div class="quiz-background">
+  <div class="container quiz-content my-5" style="padding-top: 9vh;">
+    <!-- Nav Tabs -->
+    <div class="custom-nav">
+      <ul class="nav nav-tabs mb-4 justify-content-center" id="quizTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button"
+            role="tab"><i class="fa-solid fa-list-check me-2"></i> Quiz</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="ranking-tab" data-bs-toggle="tab" data-bs-target="#ranking" type="button"
+            role="tab"><i class="fa-solid fa-ranking-star"></i> View Ranking</button>
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="quizTabContent">
+      <!-- Quiz Tab -->
+      <div class="tab-pane fade show active" id="quiz" role="tabpanel">
+        <div class="row bg-white rounded-4 shadow-lg m-2">
+          <div class="col-md-6">
+            <img src="../../assets/Images/quiz-chara-01.png" alt="Quiz Character" class="img-fluid">
+          </div>
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="text-center p-4">
+              <p class="mb-3 fs-2 fw-bold">🎉 Welcome to Tahura Quiz!</p>
+              <p class="lead">Test your knowledge about Flora and Fauna!
+                Get ready, compete, and climb the leaderboard! 🚀</p>
+              <button class="btn btn-success mt-4 px-5 py-2" type="button" [attr.disabled]="!isLoggedIn ? true : null"
+                [ngClass]="{'disabled': !isLoggedIn}" data-bs-toggle="modal" data-bs-target="#quizModal">
+                Start Quiz
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Ranking Tab -->
+      <div class="tab-pane fade" id="ranking" role="tabpanel">
+        <div class="text-center mb-3 pt-4">
+          <!-- Podium -->
+          <div class="d-flex justify-content-center align-items-end podium">
+            <!-- Second Place -->
+            <div class="podium-item second">
+              <div class="rank-label mb-1"><i class="fa-solid fa-trophy"></i> Rank 2</div>
+              <div class="profile-circle mb-2">
+                <img [src]="getProfilePic(quizResults[1]?.username)" alt="{{ quizResults[1]?.username }} Image">
+              </div>
+              <p class="rank-username title-clamp">{{ quizResults[1]?.username }}</p>
+              <p class="rank-score">Score: {{ quizResults[1]?.score }} | {{ quizResults[1]?.time }}</p>
+            </div>
+
+            <!-- First Place -->
+            <div class="podium-item first">
+              <div class="rank-label mb-1"><i class="fa-solid fa-trophy"></i> Rank 1</div>
+              <div class="profile-circle mb-2">
+                <img [src]="getProfilePic(quizResults[0]?.username)" alt="{{ quizResults[0]?.username }} Image">
+              </div>
+              <p class="rank-username title-clamp">{{ quizResults[0]?.username }}</p>
+              <p class="rank-score">Score: {{ quizResults[0]?.score }} | {{ quizResults[0]?.time }}</p>
+            </div>
+
+            <!-- Third Place -->
+            <div class="podium-item third">
+              <div class="rank-label mb-1"><i class="fa-solid fa-trophy"></i> Rank 3</div>
+              <div class="profile-circle mb-2">
+                <img [src]="getProfilePic(quizResults[2]?.username)" alt="{{ quizResults[2]?.username }} Image">
+              </div>
+              <p class="rank-username title-clamp">{{ quizResults[2]?.username }}</p>
+              <p class="rank-score">Score: {{ quizResults[2]?.score }} | {{ quizResults[2]?.time }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- List Ranking 4th and Below -->
+        <div class="table-wrapper shadow-lg">
+          <table class="table rank-table mb-0">
+            <thead>
+              <tr>
+                <th class="rank-head" scope="col">No Rank</th>
+                <th class="rank-head" scope="col">Username</th>
+                <th class="rank-head" scope="col">Score</th>
+              </tr>
+            </thead>
+          </table>
+
+          <div class="tbody-scroll">
+            <table class="table rank-table">
+              <tbody>
+                <tr *ngFor="let result of quizResults.slice(3); let i = index">
+                  <td class="rank-body">{{ i + 4 }}</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="profile-circle me-2">
+                        <img [src]="getProfilePic(result.username)" alt="{{ result.username }} Image">
+                      </div>
+                      <span class="rank-body">{{ result.username }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="rank-body">Score: {{ result.score }}</div>
+                    <div class="small text-muted rank-body">{{ result.time }}</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <table class="table rank-table shadow-lg mt-2" *ngIf="userQuizResult && userRank">
+          <tbody>
+            <tr class="mt-4">
+              <td class="rank-body">{{ userRank }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="profile-circle me-2">
+                    <img [src]="getProfilePic(userData.username)" alt="{{ userData.username }} Image">
+                  </div>
+                  <span class="rank-body">You</span>
+                </div>
+              </td>
+              <td>
+                <div class="rank-body">Score: {{ userQuizResult.score }}</div>
+                <div class="small text-muted rank-body">{{ userQuizResult.time }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Quiz Modal Section -->
+<div class="modal fade quiz-modal" id="quizModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="quizModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content p-3">
+      <div class="modal-header border-0 d-flex flex-column align-items-center">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title text-center fw-bold" id="quizModalLabel">{{ quizData?.title }}</h5>
+      </div>
+
+      <div class="modal-body">
+        <div id="quizCarousel">
+          <div class="carousel-inner d-block">
+
+            <div *ngIf="quizData?.questions?.length">
+              <div class="carousel-item active">
+                <div class="quiz-question mb-4">
+                  <p class="fw-bold fs-4">Question {{ currentQuestionIndex + 1 }}</p>
+                  <div class="quiz-container">
+                    <p class="text-justify">{{ quizData.questions[currentQuestionIndex].text }}</p>
+                  </div>
+                </div>
+
+                <div class="quiz-options">
+                  <div class="form-check mb-3 ps-5"
+                    *ngFor="let option of quizData.questions[currentQuestionIndex].options">
+                    <input class="form-check-input" type="radio" name="question{{ currentQuestionIndex }}"
+                      [value]="option.label" [(ngModel)]="answers[currentQuestionIndex]"
+                      [id]="'option' + currentQuestionIndex + option.label">
+                    <label class="form-check-label" [for]="'option' + currentQuestionIndex + option.label">
+                      {{ option.text }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Carousel controls -->
+          <div class="d-flex justify-content-between mt-4">
+            <button class="btn btn-outline-secondary" type="button" (click)="prevQuestion()"
+              [disabled]="currentQuestionIndex === 0">
+              <i class="fa-solid fa-arrow-left"></i> Previous
+            </button>
+            <button class="btn btn-outline-secondary" type="button" (click)="nextQuestion()"
+              [disabled]="currentQuestionIndex === quizData?.questions?.length - 1">
+              <i class="fa-solid fa-arrow-right"></i> Next
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-success ms-auto" (click)="finishQuiz()">Finish</button>
+      </div>
+    </div>
+  </div>
+</div>

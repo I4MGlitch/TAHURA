@@ -1,0 +1,13 @@
+.event-calendar-background {
+    background-image: url('../../assets/Images/forest-background-01.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 190vh;
+    width: 100%;
+}
+
+
+.event-calendar-content{
+    height: auto;
+}

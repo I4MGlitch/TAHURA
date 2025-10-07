@@ -1,5 +1,4 @@
 .flora{
-    background-color: white;
     background-image: url('../../assets/Images/line-background.png');
     background-repeat: no-repeat;
     background-size: cover; /* Cover the entire viewport */
@@ -7,58 +6,12 @@
     background-position: center; /* Center the background */ 
 }
 
+.flora-content{
+    height: auto;
+}
+
 h1 {
     padding-top: 20vh;
     text-align: center;
     color: #1C4231;
-}
-
-/* CARD HOVER SECTION */
-.card-items {
-    position: relative;
-    /* height: 500px;
-    width: 400px; */
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    overflow: hidden;
-    border-radius: 1rem;
-}
-
-.intro {
-    padding: 10px;
-    box-sizing: border-box;
-    position: absolute;
-    background: linear-gradient(180deg, rgba(9, 9, 121, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-    color: white;
-    bottom: 0;
-    width: 100%;
-    transition: .5s;
-}
-
-.intro-title {
-    font-size: 24px;
-}
-
-.intro-des {
-    font-size: 16px;
-}
-
-.intro-btn {
-    visibility: hidden;
-    opacity: 0;
-    transition: .5s;
-}
-
-.card-items:hover .intro-btn {
-    opacity: 1;
-    visibility: visible;
-}
-
-@media screen and (max-width: 1200px) {
-    .intro-title {
-        font-size: 18px;
-    }
-
-    .intro-des {
-        font-size: 14px;
-    }
 }

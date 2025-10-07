@@ -1,0 +1,77 @@
+<div class="bg">
+<div class="container mt-5" style="min-height: 100vh; padding-bottom: 50vh;">
+  <h3>Search Results for "{{ searchTerm }}"</h3>
+
+  <!-- Search Bar -->
+  <div class="search-bar mt-4 mb-4">
+    <form class="d-flex ms-auto" (ngSubmit)="onSearch()">
+      <input class="form-control me-2" type="search" placeholder="Search Flora or Fauna" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div *ngIf="loading" class="spinner">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading">
+    <div class="row">
+      <div class="col-12">
+        <h4>Flora</h4>
+        <div *ngIf="floraResults.length === 0">
+          <p>No results found.</p>
+        </div>
+        <div class="row">
+          <div *ngFor="let flora of floraResults" class="col-md-4 col-6 mt-4">
+            <div class="card-items">
+              <img [src]="flora.photos.length > 0 ? getImageUrl(flora.photos[0]?.data) : getErrorImageUrl()" 
+                   class="img-fluid" 
+                   alt="{{ flora.name }} Image" 
+                   (error)="handleImageError($event, flora)">
+              <div class="intro">
+                <div class="intro-title-panel flex row align-items-end">
+                  <small class="intro-title title-clamp">{{ flora.name }}</small>
+                  <small class="sub-intro-title title-clamp">({{ flora.nameIlmiah }})</small>
+                </div>
+                <p class="intro-des card-clamp text-justify">
+                  {{ flora.short_description }}
+                </p>
+                <a [routerLink]="['/detail-page', 'flora', flora._id]" class="btn btn-readmore intro-btn">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mt-4">
+        <h4>Fauna</h4>
+        <div *ngIf="faunaResults.length === 0">
+          <p>No results found.</p>
+        </div>
+        <div class="row">
+          <div *ngFor="let fauna of faunaResults" class="col-md-4 col-6 mt-4">
+            <div class="card-items">
+              <img [src]="fauna.photos.length > 0 ? getImageUrl(fauna.photos[0]?.data) : getErrorImageUrl()" 
+                   class="img-fluid" 
+                   alt="{{ fauna.name }} Image" 
+                   (error)="handleImageError($event, fauna)">
+              <div class="intro">
+                <div class="intro-title-panel flex row align-items-end">
+                  <small class="intro-title title-clamp">{{ fauna.name }}</small>
+                  <small class="sub-intro-title title-clamp">({{ fauna.nameIlmiah }})</small>
+                </div>
+                <p class="intro-des card-clamp text-justify">
+                  {{ fauna.short_description }}
+                </p>
+                <a [routerLink]="['/detail-page', 'fauna', fauna._id]" class="btn btn-readmore intro-btn">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

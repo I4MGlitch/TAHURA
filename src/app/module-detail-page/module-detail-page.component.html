@@ -1,0 +1,90 @@
+<div class="module-detail-background">
+  <div class="container module-detail-content">
+    <div class="row" *ngIf="learningModuleDetails">
+      <div class="col-md-12 mt-2">
+        <div class="card article-page p-4 text-center border-0">
+          <div class="row">
+            <div>
+              <div class="float-start">
+                <a routerLink="/learning-modules-page" class="btn me-2">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <p class="fs-1">{{ learningModuleDetails.title }}</p>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <p class="mb-4 tag-button">{{ learningModuleDetails.category }}</p>
+            </div>
+
+            <div class="col-md-12">
+              <div class="text-center">
+                <img *ngIf="learningModuleDetails?.photos && learningModuleDetails.photos.length > 0" [src]="getImageUrl(learningModuleDetails.photos[0].data)"
+                  class="modules-detail-img" alt="Module Image" [attr.data-bs-toggle]="'modal'"
+                  [attr.data-bs-target]="'#newsImageModal'">
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+              <p class="type-button fs-6">
+                {{ learningModuleDetails.date | date: 'dd MMMM yyyy' }}
+              </p>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mt-4 text-start text-justify">
+                <p>{{ learningModuleDetails.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="text-start sub-title">Another Modules</p>
+      <div class="swiper-container container2 mt-5">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide col-3" *ngFor="let module of learningModuleList">
+            <div class="card">
+              <p class="badge-modules position-absolute top-0 end-0 bg-success text-white m-2 px-2 py-1">
+                {{ module.category }}
+              </p>
+              <img *ngIf="module?.photos && module.photos.length > 0" [src]="getImageUrl(module.photos[0].data)"
+                class="artikel-lain" alt="Module Image" [attr.data-bs-toggle]="'modal'"
+                [attr.data-bs-target]="'#newsImageModal'">
+              <div class="card-body text-justify">
+                <h5 class="card-title title-clamp2">{{ module.title }}</h5>
+                <p class="card-text">
+                  <small class="text-body-secondary">{{ module.date | date: 'dd MMMM yyyy' }}</small>
+                </p>
+                <p class="card-text des-clamp">{{ module.description }}</p>
+                <div class="d-flex justify-content-end align-items-end">
+                  <a [routerLink]="['/module-detail-page', module._id]" class="btn btn-readmore">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-scrollbar"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Floating Chatbot Button -->
+<a routerLink="/chatbot-page">
+  <button class="btn btn-success chatbot-float">
+      <img src="../../assets/Images/chatbot.png" alt="Chatbot" class="me-2">
+      <div class="text-start">
+        <div class="fw-bold">TAHURA</div>
+        <div>CHATBOT</div>
+      </div>
+  </button>
+</a>
